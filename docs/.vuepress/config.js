@@ -7,22 +7,26 @@ export default defineUserConfig({
   lang: 'zh-CN',
   title: 'VuePress',
   description: '这是我的第一个 VuePress 站点',
-  base: '/zhaomy2025.vuepress/',
+  base: '/vuepress/',
   theme: defaultTheme({
     logo: 'https://vuejs.press/images/hero.png',
 
     navbar: [
       '/',
       {
-        text: 'Article',
+        text: '资源',
+        link: '/posts/resource/',
+      },
+      {
+        text: '文章',
         link: '/article/',
       },
       {
-        text: 'Category',
+        text: '目录',
         link: '/category/',
       },
       {
-        text: 'Tag',
+        text: '标签',
         link: '/tag/',
       },
       {
@@ -30,6 +34,9 @@ export default defineUserConfig({
         link: '/timeline/',
       },
     ],
+    sidebar: {
+      '/posts/resource/': ['/posts/resource/']
+    }
   }),
 
   plugins: [
