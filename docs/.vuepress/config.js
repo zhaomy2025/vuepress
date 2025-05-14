@@ -43,7 +43,6 @@ export default defineUserConfig({
       '/posts/spring/': [
           {
             text: 'Spring',
-            collapsible: true,
             link: '/posts/spring/',
           },
           {
@@ -58,7 +57,8 @@ export default defineUserConfig({
           },
           {
             text: 'Spring Boot',
-            children: ['/posts/spring/spring-boot'],
+            prefix: '/posts/spring/',
+            children: ['spring-boot'],
             collapsible: true,
           }
       ]
