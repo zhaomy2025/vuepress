@@ -2,20 +2,24 @@ import { blogPlugin } from '@vuepress/plugin-blog'
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
+import markdownItPlantuml from "markdown-it-plantuml";
 
 export default defineUserConfig({
   lang: 'zh-CN',
-  title: 'VuePress',
+  title: 'My Blog',
   description: '这是我的第一个 VuePress 站点',
   base: '/vuepress/',
   theme: defaultTheme({
-    logo: 'https://vuejs.press/images/hero.png',
-
+    logo: '/images/logo.png',
     navbar: [
       '/',
       {
         text: '资源',
         link: '/posts/resource/',
+      },
+      {
+        text: 'Spring',
+        link: '/posts/spring/',
       },
       {
         text: '文章',
@@ -35,8 +39,31 @@ export default defineUserConfig({
       },
     ],
     sidebar: {
-      '/posts/resource/': ['/posts/resource/']
-    }
+      '/posts/resource/': ['/posts/resource/'],
+      '/posts/spring/': [
+          {
+            text: 'Spring',
+            collapsible: true,
+            link: '/posts/spring/',
+          },
+          {
+            text: 'Spring Framework',
+            prefix: '/posts/spring/',
+            collapsible: true,
+            children: [
+                'spring-framework',
+                'spring-framework-ioc',
+                'spring-framework-ioc-impi',
+            ],
+          },
+          {
+            text: 'Spring Boot',
+            children: ['/posts/spring/spring-boot'],
+            collapsible: true,
+          }
+      ]
+    },
+    sidebarDepth: 1,
   }),
 
   plugins: [
@@ -144,4 +171,7 @@ export default defineUserConfig({
   ],
 
   bundler: viteBundler(),
+  markdown: {
+    extendsMarkdown: (md) => {md.use(markdownItPlantuml);},
+  },
 })

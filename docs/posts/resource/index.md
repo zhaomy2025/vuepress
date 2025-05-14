@@ -1,4 +1,5 @@
 ---
+title: 资源
 date: 2025-04-30
 category:
   - 资源
@@ -12,15 +13,18 @@ tag:
 ## 常用搜索
 [DeepSeek](https://chat.deepseek.com/)  
 
-## 代码托管
-[GitHub](https://github.com/)  
-[Gitee](https://gitee.com/)  
-[CODING 腾讯云代码托管](https://coding.net/)  
+## 技术博客
+[Java 全栈知识体系](https://pdai.tech/)
 
 ## 技术社区
 [Linux公社](https://www.linuxidc.com/)  
 [stackoverflow](https://stackoverflow.com/)  
-[segmentfault知否](https://segmentfault.com/)  
+[segmentfault知否](https://segmentfault.com/)
+
+## 代码托管
+[GitHub](https://github.com/)  
+[Gitee](https://gitee.com/)  
+[CODING 腾讯云代码托管](https://coding.net/)  
 
 ## 工具合集
 [菜鸟工具](https://c.runoob.com/)  
@@ -29,6 +33,9 @@ tag:
 [脚本之家](http://tools.jb51.net/)  
 [W3Cschool在线工具](https://123.w3cschool.cn/webtools)  
 [云转换](https://cloudconvert.com/)  
+
+## AI工具
+[百度智能云千帆](https://cloud.baidu.com/product-s/qianfan_home)
 
 ## 文档工具
 [VuePress](https://vuepress.vuejs.org/zh/)  
