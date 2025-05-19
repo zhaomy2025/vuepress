@@ -1,9 +1,9 @@
+import { backToTopPlugin } from '@vuepress/plugin-back-to-top'
 import { blogPlugin } from '@vuepress/plugin-blog'
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
-import markdownItPlantuml from "markdown-it-plantuml";
-
+import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
 export default defineUserConfig({
   lang: 'zh-CN',
   title: 'My Blog',
@@ -168,10 +168,15 @@ export default defineUserConfig({
       ],
       hotReload: true,
     }),
+    mdEnhancePlugin({
+      chartjs: true,
+      echarts: true,
+      flowchart: true,
+      markmap: true,
+      mermaid: true,
+      plantuml: true,
+    }),
+    backToTopPlugin(),
   ],
-
   bundler: viteBundler(),
-  markdown: {
-    extendsMarkdown: (md) => {md.use(markdownItPlantuml);},
-  },
 })

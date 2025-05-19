@@ -3,7 +3,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const tmpFilePath = process.argv[2].toLowerCase();
-const filePath = tmpFilePath.endsWith('/') ? `${tmpFilePath}index.md` : `${tmpFilePath}.md`;
 const title = process.argv[3];
 const category = tmpFilePath.split('/');
 if (!tmpFilePath.endsWith('/')){
@@ -21,6 +20,18 @@ tags:
 # ${title}
 [[toc]]
 `;
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-fs.writeFileSync(path.join(__dirname, 'docs/posts/',filePath), content);
-console.log(`Created: ${filePath}`);
+const relativeFilePath = tmpFilePath.endsWith('/') ? `${tmpFilePath}index.md` : `${tmpFilePath}.md`;
+const absoluteFilePath = path.join(__dirname, 'docs/posts/',relativeFilePath);
+const dirPath = path.dirname(absoluteFilePath);
+fs.mkdir(dirPath, { recursive: true }, (err) => {
+    if (err) {
+        console.error('创建目录失败:', err);
+        return;
+    }
+    console.log('目录创建成功');
+});
+
+fs.writeFileSync(absoluteFilePath, content);
+console.log(`Created: ${relativeFilePath}`);
