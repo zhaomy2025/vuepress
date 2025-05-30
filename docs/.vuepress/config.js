@@ -4,6 +4,8 @@ import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { viteBundler } from '@vuepress/bundler-vite'
 import { mdEnhancePlugin } from 'vuepress-plugin-md-enhance'
+import {markdownTabPlugin} from "@vuepress/plugin-markdown-tab";
+import {markdownIncludePlugin} from "@vuepress/plugin-markdown-include";
 export default defineUserConfig({
   lang: 'zh-CN',
   title: 'My Blog',
@@ -20,6 +22,10 @@ export default defineUserConfig({
       {
         text: 'Spring',
         link: '/posts/spring/',
+      },
+      {
+        text: 'VuePress',
+        link: '/posts/vuepress/',
       },
       {
         text: '文章',
@@ -61,9 +67,15 @@ export default defineUserConfig({
             children: ['spring-boot'],
             collapsible: true,
           }
-      ]
+      ],
+      '/posts/vuepress/': [
+        '/posts/vuepress/',
+        '/posts/vuepress/plugin',
+        '/posts/vuepress/vue-component',
+        '/posts/vuepress/css',
+          ]
     },
-    sidebarDepth: 1,
+    sidebarDepth: 0,
   }),
 
   plugins: [
@@ -177,6 +189,14 @@ export default defineUserConfig({
       plantuml: true,
     }),
     backToTopPlugin(),
+    markdownTabPlugin({
+      // 启用代码选项卡
+      codeTabs: true,
+      // 启用选项卡
+      tabs: true,
+    }),
+    markdownIncludePlugin({
+    }),
   ],
   bundler: viteBundler(),
 })

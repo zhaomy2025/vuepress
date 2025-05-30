@@ -34,7 +34,7 @@
     }
   }
 }
-
+// 目录自动编号
 .table-of-contents {
   counter-reset: hh2;
 
@@ -61,4 +61,14 @@
       content:  counter(hh3) "." counter(hh4) ". ";
     }
   }
+}
+
+// 行内标签
+.inline-tag {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  margin: 0 0.2em;
+  border-radius: 3px;
+  font-size: 0.85em;
+  font-weight: bold;
 }
