@@ -24,6 +24,10 @@ export default defineUserConfig({
         link: '/posts/spring/',
       },
       {
+        text: 'Git',
+        link: '/posts/git/',
+      },
+      {
         text: 'VuePress',
         link: '/posts/vuepress/',
       },
@@ -68,12 +72,16 @@ export default defineUserConfig({
             collapsible: true,
           }
       ],
+      '/posts/git/': [
+        '/posts/git/',
+        '/posts/git/git-hooks',
+      ],
       '/posts/vuepress/': [
-        '/posts/vuepress/',
-        '/posts/vuepress/plugin',
-        '/posts/vuepress/vue-component',
-        '/posts/vuepress/css',
-          ]
+          '/posts/vuepress/',
+          '/posts/vuepress/plugin',
+          '/posts/vuepress/vue-component',
+          '/posts/vuepress/css',
+      ],
     },
     sidebarDepth: 0,
   }),
