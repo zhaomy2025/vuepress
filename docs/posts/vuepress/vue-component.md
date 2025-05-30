@@ -42,8 +42,8 @@ export default {
 注意：
 1. vuepress 1.X 和 2.X 版本的组件写法不同，请根据版本选择对应的写法，本文以 2.X 版本为例。
 2. VuePress 默认会自动注册 .vuepress/components/ 下的 Vue 组件，但需确保
-  1. 组件文件名为 MyComponent.vue（大小写敏感）
-  2. 路径必须是 .vuepress/components/，不能是其他路径，包括子目录。
+    1. 组件文件名为 MyComponent.vue（大小写敏感）
+    2. 路径必须是 .vuepress/components/，不能是其他路径，包括子目录。
 
 ### 手动全局注册组件(可选)
 如果自动注册失败，可以在 .vuepress/client.js 中手动注册：
@@ -101,8 +101,5 @@ export default defineClientConfig({
 <Tip>提示</Tip> 
 <Warning>注意</Warning> 
 <Danger>警告</Danger>  
-::: danger
-:::
-::: warning
-:::
+
 <!-- @include: ./common_summary.md -->

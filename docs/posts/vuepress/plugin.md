@@ -13,8 +13,7 @@ tags:
 [[toc]]
 ::: tip
 [VuePress 市场](https://marketplace.vuejs.press/zh/)和[VuePress 生态系统](https://ecosystem.vuejs.press/zh/)提供了很多常用的插件，本文介绍了这些常用插件的安装和使用方法。
-- Markdown 相关
-   <!-- @include:./common_markdown.md -->
+ <!-- @include:./common_markdown.md -->
 :::
 
 ## Markdown 相关
@@ -66,8 +65,8 @@ npm i -D vuepress
 :::
 ````
 
-#### 导入文件
-@vuepress/plugin-markdown-include 是一个可以导入其他 Markdown 文件的插件，被包含的文件会完整渲染，包括 Frontmatter、Markdown 语法、Vue 组件等，支持嵌套包含。
+#### 导入文件 @vuepress/plugin-markdown-include
+@vuepress/plugin-markdown-include 是一个可以导入其他 Markdown 文件的插件，被包含的文件会完整渲染，包括 Frontmatter、Markdown 语法、Vue 组件等。
 ::: tip
 和官方自带的markdown-it-import-code插件有何不同？
 - markdown-it-import-code 插件主要用于嵌入代码文件的特定部分，常见于展示代码片段。
@@ -78,7 +77,7 @@ npm i -D vuepress
 | 目标内容 |完整Markdown文件  |代码文件 |
 | 渲染方式 | 渲染为 Markdown/Vue 组件 | 渲染为代码块（语法高亮）|
 | 插件类型 | VuePress 官方插件 | markdown-it 通用插件 |
-| 语法 | `<!-- @include: ./file.md -->` |`@[code](file.js)` |
+| 语法 | `@include: ./file.md` 或 `<!-- @include: ./file.md -->` |`@[code](file.js)` |
 :::
 
 安装依赖：
@@ -99,11 +98,9 @@ export default {
 }
 ```
 
-在 Markdown 文件中，使用如下语法：
-````markdown
-<!-- @include: ./common_summary.md -->
-````
-
+在 Markdown 文件中，使用如下语法：`<!-- @include: ./common_summary.md -->`，`common_summary.md`文件内容如下：
+@[code](./common_summary.md)
+注：不支持嵌套导入，`common_markdown.md`文件内容并未显示，导入效果参考[总结](#总结)
 ### 功能集成
 #### Markdown增强
 为 VuePress2 提供更多 [Markdown增强](https://plugin-md-enhance.vuejs.press/zh/)功能。包括：
@@ -157,18 +154,27 @@ export default {
 ```
 
 1. 在 Markdown 文件中使用Mermaid语法：
+````markdown
 ```mermaid
 graph LR
   A --> B
 ```
-
+````
+效果如下：
+```mermaid
+graph LR
+  A --> B
+```
+<!--
 ## 侧边栏插件
+设置都无效
 ### ~~vuepress-plugin-anchor-right~~
-此插件不再维护，建议使用主题，主题是基于官方的，除了加个导航，没有任何多余代码！
+此插件不再维护，建议使用主题，主题是基于官方的，除了加个导航，没有任何多余代码！  
 安装：
 ```bash
 npm install -d vuepress-plugin-anchor-right
 ```
+
 ### ~~vuepress-plugin-right-anchor~~
 报错`Failed to resolve import "ts-debounce" from "node_modules/vuepress-plugin-right-anchor/lib/client/components/RightAnchor.js?v=1ee1cae6". Does the file exist?`
 安装：
@@ -193,10 +199,11 @@ module.exports = {
     ]
 }
 ```
-### vuepress-plugin-auto-sidebar???
+
+### ~~vuepress-plugin-auto-sidebar~~
 安装：
 ```bash
 npm i vuepress-plugin-auto-sidebar@alpha -D
 ```
-
+-->
 <!-- @include: ./common_summary.md -->

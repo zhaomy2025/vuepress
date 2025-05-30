@@ -15,7 +15,8 @@ tags:
   - 新功能
   - 站点管理
   - Markdown 相关
-    <!-- @include: ./common_markdown.md -->
+
+<!-- @include: ./common_markdown.md -->
 
 优先使用官方插件，官方插件不支持的功能，再考虑自己编写插件或Vue组件来实现相关功能，Vue组件的开发可以参考[VuePress 编写 Vue 组件](./vue_component.md)，目前实现了以下功能：
   - 行内标签组件
