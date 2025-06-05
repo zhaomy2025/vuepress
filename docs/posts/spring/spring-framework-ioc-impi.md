@@ -40,6 +40,7 @@ class BeanFactory{
 }
 @enduml
 ```
+
 ### BeanDefinition定义Bean对象及其依赖关系
 BeanDefinitionReader 是 BeanDefinition的解析器。  
 BeanDefinitionHolder 是 BeanDefination的包装类，用来存储BeanDefinition，name以及aliases等。

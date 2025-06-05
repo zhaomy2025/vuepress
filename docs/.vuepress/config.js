@@ -63,12 +63,17 @@ export default defineUserConfig({
                 'spring-framework',
                 'spring-framework-ioc',
                 'spring-framework-ioc-impi',
+                'spring-framework-aop',
+                'spring-framework-aop-impi'
             ],
           },
           {
             text: 'Spring Boot',
             prefix: '/posts/spring/',
-            children: ['spring-boot'],
+            children: [
+                'spring-boot',
+                'spring-boot-hello-world',
+            ],
             collapsible: true,
           }
       ],
