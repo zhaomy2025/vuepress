@@ -19,7 +19,7 @@ tags:
 ## Spring Boot 集成 Oracle（JPA，MyBatis，MyBatis-Plus）
 
 ## Spring Boot 集成 Redis
-
+<!-- @include:./spring-boot-redis-intro.md -->
 ## Spring Boot 集成缓存
 
 ## Spring Boot 集成消息队列

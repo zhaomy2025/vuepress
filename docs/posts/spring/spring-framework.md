@@ -71,3 +71,27 @@ SpEL：提供了强大的表达式语言，支持访问和修改属性值、对�
 5. Jcl： Spring 5.x中新增了日志框架集成的模块。  
 #### Test  
 1. Spring Test：提供了对 JUnit 和 TestNG 测试框架的支持，包括 Spring 的测试上下文、Spring MVC 测试、WebFlux 测试等，还提供了一些基于 Spring 的测试功能，比如在测试 Web 框架时，模拟 Http 请求的功能。
+
+### Spring中有哪些设计模式？
+#### 工厂模式
+Spring中有很多地方使用了工厂模式，比如BeanFactory、ApplicationContext等。BeanFactory是Spring的核心接口，它负责实例化、定位、配置应用程序中的对象，实现类有XmlBeanFactory、DefaultListableBeanFactory等。
+
+#### 模板模式
+模板模式是一种行为型设计模式，它定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。
+Spring中有很多地方使用了模板模式，比如JdbcTemplate、HibernateTemplate、RedisTemplate等。
+
+#### 观察者模式
+观察者模式定义了对象之间的一对多依赖，当对象改变状态时，依赖它的对象会收到通知并自动更新。Spring的事件驱动模型就是观察者模式的应用。
+Spring中有很多地方使用了观察者模式，比如ApplicationEvent、ApplicationListener、MessageSource等。
+
+#### 适配器模式
+适配器模式将一个类的接口转换成客户希望的另一个接口，使得原本由于接口不兼容而不能一起工作的两个类可以一起工作。
+- Spring的AOP就是适配器模式的应用。
+- Spring MVC的适配器模式：HandlerAdapter接口用于适配处理器（Controller、ViewResolver等）的请求
+  
+#### 总结
+Spring的设计模式主要有工厂模式、模板模式、观察者模式、适配器模式。这些设计模式应用于不同的场景，比如BeanFactory用于实例化对象，模板模式用于简化代码，观察者模式用于事件驱动，适配器模式用于AOP。但这些设计模式的实现方式是有共性的，都是基于封装、继承、多态三大特性来实现的。
+
+工厂模式、模板模式、观察者模式都是在接口/父类中定义了一些通用的方法，子类可以根据需要重写这些方法，从而实现不同的功能。例如工厂模式覆盖了创建对象的过程，模板模式重写了算法的部分步骤，观察者模式重写了接收通知后的处理过程。
+
+适配器模式的实现方式是通过继承或组合的方式，将一个类的接口转换成客户希望的另一个接口。
