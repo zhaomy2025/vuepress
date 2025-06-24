@@ -1,3 +1,4 @@
+---
 title: Git钩子
 date: 2025-05-30T05:26:27.248Z
 category:
@@ -6,10 +7,10 @@ tags:
   - git
   - hooks
   - Git Hooks
+---
 
 # Git钩子
 [[toc]]
-
 
 ::: tip
 Git 钩子（Git Hooks）是 Git 在**特定事件**（如提交、推送、合并等）发生时自动触发的**自定义脚本**。它们允许开发者在 Git 工作流程的各个阶段插入自定义逻辑，例如：

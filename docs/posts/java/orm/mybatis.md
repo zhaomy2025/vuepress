@@ -9,20 +9,11 @@ tags:
   - mybatis
 ---
 
-# MyBatis
+# MyBatis 简介
 [[toc]]
 
 ## 什么是 MyBatis
 <!-- @include:./mybatis-intro.md -->
-
-## 什么是ORM
-ORM（Object-Relational Mapping，对象-关系映射）通过使用描述对象和数据库之间映射的元数据，将java程序中的对象自动持久化到关系数据库中。
-
-### 什么是全自动ORM
-ORM框架可以根据对象关系模型直接获取，查询关联对象或者关联集合对象，简单而言使用全自动的ORM框架查询时可以不再写SQL。典型的框架如Hibernate； 因为Spring-data-jpa很多代码也是Hibernate团队贡献的，所以spring-data-jpa也是全自动ORM框架。
-
-### 什么是半自动ORM
-半自动ORM框架需要手动编写SQL代码。典型的框架如MyBatis。
 
 ## MyBatis栈技术演进
 
@@ -35,7 +26,7 @@ MyBatis的前身，它封装了绝大多数的 JDBC 样板代码，使得开发�
 ### MyBatis
 伴随着JDK5+ 泛型和注解特性开始流行，IBatis在3.0变更为MyBatis，对泛型和注解等特性开始全面支持，同时支持了很多新的特性，比如：
 - 实现了接口绑定，通过Dao接口 和xml映射文件的绑定，自动生成接口的具体实现
-- 支持 ognl表达式，比如 <if>, <else>使用ognl进行解析
+- 支持 ognl表达式，比如 `<if>`, `<else>`使用ognl进行解析
 - 支持插件机制，PageHelper分页插件应用而生，解决了数据库层的分页封装问题
 
 所以这个时期，MyBatis XML 配置方式 + PageHelper 成为重要的开发方式。
@@ -54,6 +45,7 @@ Spring Boot的出现便是要解决配置过多的问题，通过自动配置和
 这个阶段，主要的开发技术栈是 Spring + mybatis-spring-boot-starter 自动化配置 + PageHelper，并且很多数据库实体mapper还是通过xml方式配置的（伴随着使用一些自动化生成工具）。
 
 ### MyBatis-Plus
+
 为了更高的效率，出现了MyBatis-Plus这类工具，对MyBatis进行增强。
 - 全自动ORM
     + MyBatis-Plus 启动即会自动注入基本 CURD，性能基本无损耗，直接面向对象操作
@@ -65,6 +57,3 @@ Spring Boot的出现便是要解决配置过多的问题，通过自动配置和
 - 内置性能分析插件，可输出SQL语句以及其执行时间
 - 支持主键自动生成：支持4种主键策略，可自由配置
 - 内置全局拦截插件，提供全表delete、update操作只能分析阻断，也可自动逸拦截规则，预防误操作
-
-
-## 

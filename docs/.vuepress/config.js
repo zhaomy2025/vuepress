@@ -20,6 +20,10 @@ export default defineUserConfig({
         link: '/posts/resource/',
       },
       {
+        text: 'Java',
+        link: '/posts/java/',
+      },
+      {
         text: 'Spring',
         link: '/posts/spring/',
       },
@@ -50,6 +54,32 @@ export default defineUserConfig({
     ],
     sidebar: {
       '/posts/resource/': ['/posts/resource/'],
+      '/posts/java/': [
+          '/posts/java/',
+          {
+            text: 'Json',
+            prefix: 'json/',
+            children:[
+                'fastjson2',
+                'jackson'
+            ]
+          },
+          {
+            text: 'ORM',
+            prefix: 'orm/',
+            children:[
+              'mybatis',
+              'mybatis-annotation',
+            ]
+          },
+          {
+            text: '其他',
+            prefix: 'misc/',
+            children: [
+              'linked-hash-map-to-object',
+            ]
+          }
+      ],
       '/posts/spring/': [
           {
             text: 'Spring',
@@ -73,6 +103,8 @@ export default defineUserConfig({
             children: [
                 'spring-boot',
                 'spring-boot-hello-world',
+                'spring-boot-redis',
+                'spring-boot-oracle',
             ],
             collapsible: true,
           }
