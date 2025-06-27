@@ -1,5 +1,5 @@
 ---
-title: SpringBoot集成Oracle
+title: SpringBoot 集成 Oracle
 date: 2025-06-19T03:23:36.522Z
 category:
   - spring
@@ -11,7 +11,10 @@ tags:
 
 # SpringBoot 集成 Oracle
 [[toc]]
-
+::: tip
+本文主要介绍如何在SpringBoot项目中集成Oracle数据库，给出了JPA、MyBatis和MyBatis-Plus三种方式，并对比了它们的优缺点。
+注意，本文仅讨论如何集成，并给出简单的使用示例，进阶功能请参考官方文档。
+:::
 ## JDBC、ORM、JPA、MyBatis对比
 JDBC（Java Database Connectivity）是Java语言操作关系型数据库的标准API，它允许开发者通过Java程序（而非数据库控制台）执行SQL语句并处理结果。作为Java SE的一部分，JDBC提供了一套与数据库无关的通用接口，具体实现由各数据库厂商的驱动完成。
 
@@ -110,7 +113,12 @@ public class UserService {
 :::
 
 ## SpringBoot集成Oracle - 基于MyBatis
-1. 添加依赖
+::: tip
+MyBatis支持XML和注解两种配置方式，两种配置方式可以混合使用。
+:::
+
+### 基于XML配置
+1. 添加`mybatis-spring-boot-starter`依赖
 2. 配置数据源和MyBatis
 3. 定义实体，无特殊处理
 4. 定义Mapper接口，添加@Mapper注解，对应方法上添加@Select、@Insert、@Update、@Delete注解
@@ -139,10 +147,10 @@ spring:
     driver-class-name: oracle.jdbc.driver.OracleDriver
 
 mybatis:
-  type-aliases-package: com.example.demo.entity
-  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.entity # 设置实体类的包路径，简化XML中的类型全限定名
+  mapper-locations: classpath:mapper/*.xml  # 指定Mapper XML文件的位置
   configuration:
-    map-underscore-to-camel-case: true
+    map-underscore-to-camel-case: true  # 开启下划线转驼峰命名规则
 ```
 
 @tab User.java
@@ -191,9 +199,26 @@ public interface UserMapper {
 ```
 :::
 
+### 基于注解配置
+集成的前三个步骤与XML方式是一样的，不同的是配置方式，本节重点理解原有XML配置方式如何转为注解配置方式。  
+1. 添加`mybatis-spring-boot-starter`依赖<Tip>同XML配置方式</Tip>
+2. 配置数据源和MyBatis<Tip>同XML配置方式</Tip>
+3. 定义实体<Tip>同XML配置方式</Tip>
+4. 定义Mapper接口，添加@Mapper注解
+   1. 对应方法上添加@Select、@Insert、@Update、@Delete注解
+   2. 方法参数上添加添加@Param注解，指定参数名
+   2. 对应方法上添加添加@Results、@Result注解，映射查询结果<Tip>相当于XML中的resultMap</Tip>
+   3. 对应方法上添加添加@ResultMap注解使用`id`引用@Results的映射
+   4. 在@Result注解many属性上使用@One、@Many注解，指定关联的实体类，实现一对一、一对多查询
+
+### XML和注解混合配置
+我们可以将复杂的SQL写在xml中，比如将resultMap定义在xml中，在方法中用@ResultMap。
+
 ## SpringBoot集成Oracle - 基于MyBatis-Plus
 1. 添加`spring-boot-starter-jdbc`和`mybatis-plus-boot-starter`依赖
 2. 配置数据源和MyBatis-Plus
+3. 配置内置拦截器，例如分页拦截器、多租户拦截器等
+   - 注意先添加多租户拦截器，再添加分页拦截器
 3. 定义实体，添加@Data、@TableName注解，属性配置如下：
    - 添加@TableId注解，指定主键
    - 添加@TableField注解，指定列名和类型
@@ -233,12 +258,58 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    use-generated-keys: true
+    default-executor-type: REUSE
+    use-actual-param-name: true
   global-config:
     db-config:
       id-type: auto # 全局主键生成策略
       logic-delete-field: deleted # 逻辑删除字段名
       logic-delete-value: 1 # 逻辑删除值
       logic-not-delete-value: 0 # 逻辑未删除值
+```
+
+@tab MyBatisConfig.java
+```java
+@Configuration
+public class MyBatisConfig {
+   @Bean
+   public PaginationInnerInterceptor paginationInnerInterceptor() {
+      return new PaginationInnerInterceptor();
+   }
+   /**
+    * 配置内置的MybatisPlusInterceptor拦截器
+    */
+   @Bean
+   public MybatisPlusInterceptor mybatisPlusInterceptor() {
+      MybatisPlusInterceptor mybatisPlusInterceptor = new MybatisPlusInterceptor();
+       // 注意先 add TenantLineInnerInterceptor 再 add PaginationInnerInterceptor
+       interceptor.addInnerInterceptor(new TenantLineInnerInterceptor(new TenantLineHandler() {
+           @Override
+           public Expression getTenantId() {
+               // 实际可以将TenantId放在threadLocale中(比如xxxxContext中)，并获取。
+               return new LongValue(1);
+           }
+
+           @Override
+           public String getTenantIdColumn() {
+               return "tenant_id";
+           }
+
+           @Override
+           public boolean ignoreTable(String tableName) {
+               return false;
+           }
+
+           @Override
+           public boolean ignoreInsert(List<Column> columns, String tenantIdColumn) {
+               return TenantLineHandler.super.ignoreInsert(columns, tenantIdColumn);
+           }
+       }));
+      mybatisPlusInterceptor.addInnerInterceptor(paginationInnerInterceptor());
+      return mybatisPlusInterceptor;
+   }
+}
 ```
 
 @tab User.java
@@ -267,70 +338,32 @@ public interface UserMapper extends BaseMapper<User> {
 :::
 
 ::: tip
-MyBatis-Plus是 MyBatis 的增强工具，重点介绍MyBatis-Plus的增强的功能，其他配置和MyBatis相同，不再赘述。
+
+MyBatis-Plus是 MyBatis 的增强工具，重点介绍MyBatis-Plus的增强的功能，其他配置和MyBatis相同，不再赘述，代码对比参考[典型代码示例对比](#典型代码示例对比)。
 - 内置CRUD方法，无需编写SQL
 - 内置条件构造器，无需编写SQL
-- 内置分页支持，无需额外引入分页插件
 - 查询结果自动映射实体类属性，无需使用@Results注解
+- 内置多种拦截器
+    + 自动分页：PaginationInnerInterceptor
+    + 多租户：TenantLineInnerInterceptor
+    + 动态表名：DynamicTableNameInnerInterceptor
+    + 乐观锁：OptimisticLockerInnerInterceptor
+    + sql 性能规范: IllegalSQLInnerInterceptor 
+    + 防止全表更新与删除: BlockAttackInnerInterceptor
+
 :::
-  
+
 ### 查询方法及参数
 MyBatis-Plus的Mapper接口继承`BaseMapper`，提供了丰富的查询方法：
 - 简单查询直接使用方法名派生查询
 - 复杂查询通过QueryWrapper条件构造器处理
 - 无需使用@Param注解，直接使用参数名
 
-### 分页
+### 自动分页
 Mybatis需要手动编写分页查询的sql语句，Mybatis-Plus则可以自动生成分页查询的sql语句，并将分页结果封装成Page对象返回。
-::: code-tabs#java
-@tab Mybatis 注解方式
-```java
-@Select("SELECT * FROM (SELECT T.*,ROWNUM AS RN FROM TS_USER T ORDER BY ID) WHERE  RN >= #{startRow} AND RN < #{endRow}")
-List<User> selectPage(@Param("startRow") int startRow, @Param("endRow") int endRow);
-```
-@tab Mybatis XML方式
-```xml
-<select id="selectPage" resultMap="userResultMap">
-SELECT a.*, ROWNUM RN FROM (
-    SELECT * FROM TS_USER
-    <where>
-        <if test="name != null and name != ''">
-            NAME LIKE '%'||#{name}||'%'
-        </if>
-    </where>
-    ORDER BY ID
-) a WHERE RN &lt;= #{page.endRow} AND RN &gt;= #{page.startRow}
-</select>
-```
-@tab MyBatis-Plus
-```java
-Page<User> page = new Page<>(1, 10);
-QueryWrapper<User> wrapper = new QueryWrapper<>();
-wrapper.like("NAME", "张");
-Page<User> result = userMapper.selectPage(page, wrapper);
-```
-:::
 
-### 结果映射
-```java
-// MyBatis方式
-@Results({
-    @Result(property = "id", column = "user_id"),
-    @Result(property = "name", column = "user_name")
-})
-@Select("SELECT user_id, user_name FROM user")
-List<User> selectAll();
-
-// MyBatis-Plus方式
-@TableName("user")
-public class User {
-    @TableId(value = "user_id")
-    private Long id;
-    
-    @TableField("user_name")
-    private String name;
-}
-```
+### 多租户
+所有 SQL 自动追加 `WHERE tenant_id = xxx` 条件，无需手动编写，支持静态租户ID、动态租户ID、多租户字段自动识别等。
 
 ## 总结
 以下是Spring Boot集成Oracle时，JPA、MyBatis和MyBatis-Plus的详细对比表格：
@@ -352,7 +385,7 @@ public class User {
 | **多数据源支持**         | 需额外配置                                         | 需额外配置                                        | 需额外配置                                        |
 | **适用场景**             | 标准CRUD<br>领域模型复杂                           | 复杂SQL/报表<br>遗留系统                          | 需要平衡SQL控制与开发效率                         |
 
-### 典型代码示例对比：
+### 典型代码示例对比
 
 :::code-tabs#java
 @tab 实体类/模型定义
@@ -384,7 +417,7 @@ public class User {
 }
 ```
 
-@tab 查询示例
+@tab 查询、结果映射
 ```java
 // JPA
 public interface UserRepository extends JpaRepository<User, Long> {
@@ -397,11 +430,19 @@ public interface UserRepository extends JpaRepository<User, Long> {
 public interface UserMapper {
     @Select("SELECT * FROM USER WHERE NAME LIKE CONCAT('%',#{name},'%')")
     List<User> selectByName(@Param("name") String name);
+    
+    @Results({
+        @Result(property = "id", column = "user_id"),
+        @Result(property = "name", column = "user_name")
+    })
+    @Select("SELECT user_id, user_name FROM user")
+    List<User> selectAll();
 }
 
 // MyBatis-Plus
 public interface UserMapper extends BaseMapper<User> {
     // 内置selectByMap/wrapper方法
+    // 自动映射查询结果
     default List<User> selectByName(String name) {
         return selectList(new QueryWrapper<User>()
             .like("EMP_NAME", name));
@@ -410,20 +451,45 @@ public interface UserMapper extends BaseMapper<User> {
 ```
 
 @tab 分页对比
+
 ```java
 // JPA
 Page<User> findAll(Pageable pageable);
 
-// MyBatis
-@Select("SELECT * FROM (SELECT T.*,RUWNUM AS RN FROM USER ) WHERE RN>=#{offset} AND RN<#{offset}+#{size}")
+// MyBatis 注解方式
+// 查询[startRow，endRow)，共limit条记录
+@Select("SELECT * FROM (SELECT T.*,RUWNUM AS RN FROM USER ORDER BY ID) WHERE RN>=#{startRow} AND RN<#{endRow}")
 List<User> selectPage(@Param("offset") int offset, @Param("size") int size);
 
 // MyBatis-Plus
 Page<User> page = new Page<>(1, 10);
-mapper.selectPage(page, wrapper);
+QueryWrapper<User> wrapper = new QueryWrapper<>();
+wrapper.like("NAME", "张");
+Page<User> result = selectPage(page, wrapper);
 ```
+
+@tab Mybatis分页（XML方式）
+```xml
+<!-- 查询[startRow，endRow)，共limit条记录 -->
+<select id="selectPage" resultMap="userResultMap">
+SELECT a.* FROM (
+    SELECT a.*, ROWNUM RN FROM USER
+    WHERE ROWNUM &lt; #{page.endRow}        
+    ORDER BY ID 
+) a WHERE RN &gt;= #{page.startRow}
+</select>
+
+<!-- Oracle 12c+ 简化写法 -->
+<select>
+SELECT * FROM USER
+ORDER BY ID
+OFFSET #{page.startRow} ROWS FETCH NEXT #{page.limit} ROWS ONLY
+</select>
+```
+
 :::
-### 关键结论：
+
+### 关键结论
 1. **开发效率**：JPA > MyBatis-Plus > MyBatis（标准CRUD场景）
 2. **灵活性**：MyBatis ≈ MyBatis-Plus > JPA（复杂SQL场景）
 3. **学习成本**：MyBatis最低，JPA最高（需理解Hibernate特性）
