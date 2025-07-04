@@ -28,6 +28,10 @@ export default defineUserConfig({
         link: '/posts/spring/',
       },
       {
+        text: '数据库',
+        link: '/posts/db/',
+      },
+      {
         text: 'Git',
         link: '/posts/git/',
       },
@@ -108,6 +112,25 @@ export default defineUserConfig({
             ],
             collapsible: true,
           }
+      ],
+      '/posts/db/': [
+        {
+          text:'数据库结构设计',
+          link: 'arch/',
+          prefix: 'arch/',
+          children: [
+              'multi-tenant',
+          ],
+        },
+        {
+          text: 'SQL',
+          link: 'sql/',
+          prefix: 'sql/',
+          children: [
+            'cursor',
+            'pl_sql/',
+          ],
+        },
       ],
       '/posts/git/': [
         '/posts/git/',
