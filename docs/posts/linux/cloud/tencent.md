@@ -58,7 +58,7 @@ http://49.235.115.66
   - python3
 
 宝塔面板推荐安装的软件：
-  -LNMP一键安装包
+  - LNMP一键安装包
     + Nginx
     + MySQL
     + PHP
