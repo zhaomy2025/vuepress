@@ -28,7 +28,7 @@ jobs:
       - name: 3. 安装依赖并构建
         run: |
           npm install
-          npm run docs:build
+          npm run build
 
       - name: 4. 打包构建产物
         run: tar -czvf docs.tar.gz -C docs/.vuepress/dist .
@@ -79,7 +79,7 @@ jobs:
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |-
-          npm run docs:build
+          npm run build
           > docs/.vuepress/dist/.nojekyll
 
       - name: 5. 部署文档
