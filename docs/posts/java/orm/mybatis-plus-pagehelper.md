@@ -53,6 +53,6 @@ List<User> list = userMapper.selectIf(1);
 
 ## 注意事项
 - 只有紧跟在`PageHelper.startPage()/offsetPage()`方法后的第一个Mybatis的查询方法才会被分页。
-- 不要配置多个分页插件：使用Spring时,mybatis-config.xml和Spring<bean>配置方式选择其中一种，不要同时配置多个分页插件。
+- 不要配置多个分页插件：使用Spring时，mybatis-config.xml 和 Bean 配置方式选择其中一种，不要同时配置多个分页插件。
 - 分页插件不支持带有for update语句的分页：对于带有for update的sql，会抛出运行时异常。
 - 分页插件不支持嵌套结果映射: 由于嵌套结果方式会导致结果集被折叠，因此分页查询的结果在折叠后总数会减少，所以无法保证分页结果数量正确。
