@@ -49,12 +49,12 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            cd /usr/local/zmyblog
+            cd /usr/local/vuepress
             rm -rf ./*  # 清理旧文件
             echo "解压前文件列表：" && ls -l
             tar -xzvf /tmp/docs.tar.gz -C . # 解压新构建
             echo "解压后文件列表：" && ls -l
-            sudo systemctl restart nginx  # 重启服务
+            # sudo systemctl restart nginx  # 重启服务
 
   deploy-gh-pages:
     name: 部署文档到GitHub Pages
