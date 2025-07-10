@@ -20,6 +20,10 @@ export default defineUserConfig({
         link: '/posts/resource/',
       },
       {
+        text: 'Linux',
+        link: '/posts/linux/',
+      },
+      {
         text: 'Java',
         link: '/posts/java/',
       },
@@ -58,6 +62,18 @@ export default defineUserConfig({
     ],
     sidebar: {
       '/posts/resource/': ['/posts/resource/'],
+      '/posts/linux/': [
+          {
+            text:'云服务器',
+            prefix:'cloud/',
+            children:['tencent']
+          },
+          {
+            text: 'web服务器',
+            prefix:'web/',
+            children:['nginx']
+          }
+      ],
       '/posts/java/': [
           '/posts/java/',
           {
