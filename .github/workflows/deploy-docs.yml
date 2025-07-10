@@ -21,18 +21,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 2. 设置 Node.js
-          uses: actions/setup-node@v4
-          with:
-            node-version: 22
-            cache: npm
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
 
       - name: 3. 安装依赖并构建
-          run: |
-            npm ci
-            npm run docs:build
+        run: |
+          npm ci
+          npm run docs:build
 
       - name: 4. 打包构建产物
-          run: tar -czvf docs.tar.gz -C docs/.vuepress/dist .
+        run: tar -czvf docs.tar.gz -C docs/.vuepress/dist .
 
       # 传输到服务器
       - name: 传输到服务器
