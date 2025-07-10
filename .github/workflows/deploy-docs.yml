@@ -16,7 +16,6 @@ jobs:
     name: 部署到云服务器
     runs-on: ubuntu-latest
     steps:
-      # 在GitHub Action中构建
       - name: 1. 检出代码
         uses: actions/checkout@v4
 
@@ -28,14 +27,13 @@ jobs:
 
       - name: 3. 安装依赖并构建
         run: |
-          npm ci
+          npm install
           npm run docs:build
 
       - name: 4. 打包构建产物
         run: tar -czvf docs.tar.gz -C docs/.vuepress/dist .
 
-      # 传输到服务器
-      - name: 传输到服务器
+      - name: 5. 传输到服务器
         uses: appleboy/scp-action@v1
         with:
           host: ${{ secrets.HOST }}
@@ -44,8 +42,7 @@ jobs:
           source: docs.tar.gz
           target: /tmp/
 
-      # 部署到服务器
-      - name: 部署到服务器
+      - name: 6. 部署到服务器
         uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.HOST }}
@@ -64,28 +61,28 @@ jobs:
     runs-on: ubuntu-latest
     needs: deploy-server # 确保先完成服务器部署
     steps:
-      - name: 检出代码
+      - name: 1. 检出代码
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: 设置 Node.js
+      - name: 2. 设置 Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
 
-      - name: 安装依赖
-        run: npm ci
+      - name: 3. 安装依赖
+        run: npm install
 
-      - name: 构建文档
+      - name: 4. 构建文档
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |-
           npm run docs:build
           > docs/.vuepress/dist/.nojekyll
 
-      - name: 部署文档
+      - name: 5. 部署文档
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
