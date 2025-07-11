@@ -188,6 +188,7 @@ export default defineUserConfig({
           '/posts/vuepress/plugin',
           '/posts/vuepress/vue-component',
           '/posts/vuepress/css',
+          '/posts/vuepress/vuepress_cloud.md'
       ],
       '/posts/others/': [
           '/posts/others/yaml',
