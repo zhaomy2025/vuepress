@@ -49,8 +49,8 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            mkdir -p /usr/local/vuepress
-            cd /usr/local/vuepress
+            mkdir -p /www/wwwroot/vuepress # 宝塔面板Nginx默认网站跟目录
+            cd /www/wwwroot/vuepress
             rm -rf ./*
             echo "解压前文件列表：" && ls -l
             tar -xzvf /tmp/docs.tar.gz -C .
