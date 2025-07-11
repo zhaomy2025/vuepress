@@ -14,14 +14,9 @@ export default defineUserConfig({
   theme: defaultTheme({
     logo: '/images/logo.png',
     navbar: [
-      '/',
       {
         text: '资源',
         link: '/posts/resource/',
-      },
-      {
-        text: 'Linux',
-        link: '/posts/linux/',
       },
       {
         text: 'Java',
@@ -36,12 +31,24 @@ export default defineUserConfig({
         link: '/posts/db/',
       },
       {
+        text: '算法',
+        link: '/posts/algorithm/',
+      },
+      {
+        text: 'Linux',
+        link: '/posts/linux/',
+      },
+      {
         text: 'Git',
         link: '/posts/git/',
       },
       {
         text: 'VuePress',
         link: '/posts/vuepress/',
+      },
+      {
+        text: '杂项',
+        link: '/posts/others/',
       },
       {
         text: '文章',
@@ -62,18 +69,6 @@ export default defineUserConfig({
     ],
     sidebar: {
       '/posts/resource/': ['/posts/resource/'],
-      '/posts/linux/': [
-          {
-            text:'云服务器',
-            prefix:'cloud/',
-            children:['tencent']
-          },
-          {
-            text: 'web服务器',
-            prefix:'web/',
-            children:['nginx']
-          }
-      ],
       '/posts/java/': [
           '/posts/java/',
           {
@@ -148,6 +143,42 @@ export default defineUserConfig({
           ],
         },
       ],
+      '/posts/algorithm/': [
+        '/posts/algorithm/',
+        {
+          text:'算法思想',
+          children: [
+            'dynamic-programming',
+          ],
+        },
+        {
+          text:'领域算法',
+          link: 'domain/',
+          prefix: 'domain/',
+          children: [
+            {
+              text: '分布式算法',
+              link: 'distribute/'
+            },
+            'load-balance',
+          ],
+        },
+      ],
+      '/posts/linux/': [
+        {
+          text:'云服务器',
+          prefix:'cloud/',
+          children:['tencent']
+        },
+        {
+          text: 'Web服务器',
+          prefix:'web/',
+          children:[
+              'nginx',
+              'nginx-load-balance'
+          ]
+        }
+      ],
       '/posts/git/': [
         '/posts/git/',
         '/posts/git/git-hooks',
@@ -157,6 +188,9 @@ export default defineUserConfig({
           '/posts/vuepress/plugin',
           '/posts/vuepress/vue-component',
           '/posts/vuepress/css',
+      ],
+      '/posts/others/': [
+          '/posts/others/yaml',
       ],
     },
     sidebarDepth: 0,

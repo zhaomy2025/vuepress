@@ -33,8 +33,11 @@ Ubuntu 支持apt-get命令
 ## 文件夹位置
 - `/etc/nginx`：配置文件目录
   + `/etc/nginx/nginx.conf`: 主配置文件
-  + `/etc/nginx/conf.d/`：站点配置文件存放目录
-  * `/etc/nginx/conf.d/default.conf`：站点默认配置文件
+- `/etc/nginx/conf.d/`：站点配置文件存放目录
+  + `/etc/nginx/conf.d/default.conf`：站点默认配置文件
+
+这里给出宝塔面板的nginx默认主配置文件：
+@[code](../code/nginx/nginx.conf)
 
 ## 校验配置文件
 ```bash
