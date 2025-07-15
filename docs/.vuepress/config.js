@@ -27,6 +27,10 @@ export default defineUserConfig({
         link: '/posts/spring/',
       },
       {
+        text: '架构',
+        link: 'posts/arch/'
+      },
+      {
         text: '数据库',
         link: '/posts/db/',
       },
@@ -71,6 +75,23 @@ export default defineUserConfig({
       '/posts/resource/': ['/posts/resource/'],
       '/posts/java/': [
           '/posts/java/',
+          {
+            text:'工具库',
+            prefix: 'utils/',
+            children: [
+                'file_utils',
+                {
+                  text: 'PDFUtils',
+                  link: 'pdf_utils/',
+                  prefix: 'pdf_utils/',
+                  children: [
+                      'itexpdf'
+                  ]
+                },
+                'apache_common',
+                'hutool'
+            ]
+          },
           {
             text: 'Json',
             prefix: 'json/',
@@ -123,6 +144,19 @@ export default defineUserConfig({
             ],
             collapsible: true,
           }
+      ],
+      '/posts/arch/':[
+        {
+          text:'ZooKeeper',
+          link: 'zookeeper/',
+          prefix: 'zookeeper/',
+          children: [
+              'command',
+              'client',
+              'zkclient',
+              'curator',
+          ],
+        }
       ],
       '/posts/db/': [
         {
