@@ -1,5 +1,5 @@
 ---
-title: D:\github\zhaomy2015\vuepress\docs\posts\db\sql
+title: 游标介绍
 date: 2025-07-03T07:19:02.059Z
 category:
   - db

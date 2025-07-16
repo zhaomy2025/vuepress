@@ -1,5 +1,5 @@
 ---
-title: D:\github\zhaomy2015\vuepress\docs\posts\db\arch
+title: 数据库架构设计
 date: 2025-06-25T02:23:52.272Z
 category:
   - db

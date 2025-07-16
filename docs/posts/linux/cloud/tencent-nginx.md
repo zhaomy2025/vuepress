@@ -41,7 +41,7 @@ tags:
 
 ::: code-tabs
 @tab nginx.conf
-@[code](../code/nginx/nginx.conf)
+@[code](../../code/nginx/nginx.conf)
 
 @tab 手动创建默认站点配置文件、默认网页
 ```bash

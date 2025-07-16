@@ -1,5 +1,5 @@
 ---
-title: D:\github\zhaomy2015\vuepress\docs\posts\linux\web
+title: Web
 date: 2025-07-09T08:40:21.448Z
 category:
   - linux

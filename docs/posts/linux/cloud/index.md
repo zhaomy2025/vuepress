@@ -1,5 +1,5 @@
 ---
-title: D:\github\zhaomy2015\vuepress\docs\posts\linux\cloud
+title: 云服务器
 date: 2025-07-08T05:23:38.401Z
 category:
   - linux
@@ -11,5 +11,5 @@ tags:
   - tencent
 ---
 
-# D:\github\zhaomy2015\vuepress\docs\posts\linux\cloud
+# 云服务器
 [[toc]]

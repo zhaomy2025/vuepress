@@ -37,7 +37,7 @@ Ubuntu 支持apt-get命令
   + `/etc/nginx/conf.d/default.conf`：站点默认配置文件
 
 这里给出宝塔面板的nginx默认主配置文件：
-@[code](../code/nginx/nginx.conf)
+@[code](../../code/nginx/nginx.conf)
 
 ## 校验配置文件
 ```bash

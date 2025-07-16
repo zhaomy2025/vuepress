@@ -43,7 +43,7 @@ jobs:
     needs: build-docs  # 确保先完成构建文档
     steps:
       - name: 1. 打包构建产物
-        run: tar -czvf docs.tar.gz -C docs/.vuepress/dist .
+        run: tar -czvf docs.tar.gz -C docs/.vuepress/dist/.nojekyll .
 
       - name: 2. 传输到服务器
         uses: appleboy/scp-action@v1
