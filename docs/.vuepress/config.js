@@ -216,6 +216,14 @@ export default defineUserConfig({
       '/posts/git/': [
         '/posts/git/',
         '/posts/git/git-hooks',
+        {
+          text:'Github',
+          link: 'github/',
+          prefix: 'github/',
+          children: [
+              'github_action'
+          ]
+        },
       ],
       '/posts/vuepress/': [
           '/posts/vuepress/',
