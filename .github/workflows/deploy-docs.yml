@@ -30,6 +30,8 @@ jobs:
       - name: 3. 安装依赖
         run: npm install
 
+      # 构建文档，并将控制台输出重定向到文件.nojekyll
+      # .nojekyll 文件用于跳过 Jekyll 的默认处理流程，直接原样托管静态文件，文件内容不重要，文件存在即可
       - name: 4. 构建文档
         env:
           NODE_OPTIONS: --max_old_space_size=8192
@@ -76,7 +78,7 @@ jobs:
           ls -l
 
       - name: 1. 打包构建产物
-        run: tar -czvf docs.tar.gz -C docs/.vuepress/dist/ .
+        run: tar -czvf docs.tar.gz -C . .
 
       - name: 2. 传输到服务器
         uses: appleboy/scp-action@v1
@@ -106,9 +108,21 @@ jobs:
     runs-on: ubuntu-latest
     needs: build-docs  # 确保先完成构建文档
     steps:
+      - name: 下载构建产物
+        uses: actions/download-artifact@v4
+        with:
+          name: docs-dist
+
+      - name: 输出当前目录
+        run: |-
+          echo "当前工作目录："
+          pwd
+          echo "当前工作目录文件列表："
+          ls -l
+
       - name: 部署文档
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: docs/.vuepress/dist
+          folder: .
           clean: true  # 自动清理旧文件
