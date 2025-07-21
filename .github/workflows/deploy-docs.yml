@@ -69,12 +69,13 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs-dist
+          path: docs
 
       - name: 输出当前目录
         run: |-
-          echo "当前工作目录："
+          echo "下载构建产物后当前工作目录："
           pwd
-          echo "当前工作目录文件列表："
+          echo "下载构建产物后当前工作目录文件列表："
           ls -l
 
       - name: 1. 打包构建产物
@@ -112,17 +113,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs-dist
+          path: docs
 
       - name: 输出当前目录
         run: |-
-          echo "当前工作目录："
+          echo "下载构建产物后当前工作目录："
           pwd
-          echo "当前工作目录文件列表："
+          echo "下载构建产物后当前工作目录文件列表："
           ls -l
 
       - name: 部署文档
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: .
+          folder: docs
           clean: true  # 自动清理旧文件
