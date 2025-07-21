@@ -62,11 +62,11 @@ jobs:
           name: docs-dist
 
       - name: 输出当前目录
-          run: |-
-            echo "当前工作目录："
-            pwd
-            echo "当前工作目录文件列表："
-            ls -l
+        run: |-
+          echo "当前工作目录："
+          pwd
+          echo "当前工作目录文件列表："
+          ls -l
 
       - name: 1. 打包构建产物
         run: tar -czvf docs.tar.gz -C docs/.vuepress/dist/.nojekyll .
