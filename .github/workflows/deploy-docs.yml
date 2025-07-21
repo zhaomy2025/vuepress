@@ -79,7 +79,7 @@ jobs:
           ls -l
 
       - name: 1. 打包构建产物
-        run: tar -czvf docs.tar.gz -C . .
+        run: tar -czvf docs.tar.gz -C docs/ .
 
       - name: 2. 传输到服务器
         uses: appleboy/scp-action@v1
