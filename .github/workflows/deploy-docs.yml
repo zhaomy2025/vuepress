@@ -34,21 +34,31 @@ jobs:
         env:
           NODE_OPTIONS: --max_old_space_size=8192
         run: |-
-          echo "当前工作目录："
-          pwd
           npm run build
           > docs/.vuepress/dist/.nojekyll
+
+      - name: 输出构建产物
+        run: |-
+          echo "当前工作目录："
+          pwd
+          echo "构建产物："
+          ls -l
+          ls -l docs/.vuepress/dist/
 
   deploy-server:
     name: 部署到云服务器
     runs-on: ubuntu-latest
     needs: build-docs  # 确保先完成构建文档
     steps:
-      - name: 1. 打包构建产物
+      - name: 输出当前目录
         run: |-
           echo "当前工作目录："
           pwd
-          tar -czvf docs.tar.gz -C docs/.vuepress/dist/.nojekyll .
+          echo "当前工作目录文件列表："
+          ls -l
+
+      - name: 1. 打包构建产物
+        run: tar -czvf docs.tar.gz -C docs/.vuepress/dist/.nojekyll .
 
       - name: 2. 传输到服务器
         uses: appleboy/scp-action@v1
