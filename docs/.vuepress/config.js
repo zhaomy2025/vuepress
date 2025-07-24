@@ -199,6 +199,7 @@ export default defineUserConfig({
         },
       ],
       '/posts/linux/': [
+        'command',
         {
           text:'云服务器',
           prefix:'cloud/',
