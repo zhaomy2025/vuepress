@@ -148,9 +148,9 @@ GitHub 自动提供了一些内置环境变量，例如：
 - GITHUB_WORKSPACE：工作流的工作目录路径。
 
 使用环境变量：
-- 在 run 命令中：通过 $VAR_NAME（Bash）或 $env:VAR_NAME（PowerShell）引用。
+- 在 run 命令中：通过 `$VAR_NAME`（Bash）或 $env:VAR_NAME（PowerShell）引用。
 - 在 if 条件中：直接通过 env.VAR_NAME 访问。
-- 在 with 参数中：通过 ${{ env.VAR_NAME }} 注入。
+- 在 with 参数中：通过 `${{ env.VAR_NAME }}` 注入。
 
 ```yaml
 steps:
@@ -166,8 +166,8 @@ steps:
 - steps：包含当前步骤的信息，例如步骤的名称、状态等
 
 使用上下文对象：
-- 通过表达式语法 ${{ }} 访问
-- 在支持表达式的字段（如 if、with）中通过 ${{ }} 访问
+- 通过表达式语法 `${{ }}` 访问
+- 在支持表达式的字段（如 if、with）中通过 `${{ }}` 访问
 ::: code-tabs
 @tab if 条件语法
 ```yaml
@@ -192,7 +192,7 @@ steps:
 | 特性	      |   GITHUB_REF (环境变量)      |         github.ref (上下文属性)|
 | ---	      |   ---	                     |         ---|
 | 来源	      |   GitHub 自动注入	           |         github 上下文对象的一部分|
-| 访问方式	    |   $GITHUB_REF (脚本内)      |       ${{ github.ref }} (表达式内)|
+| 访问方式	    |   $GITHUB_REF (脚本内)      |       `${{ github.ref }}` (表达式内)|
 | 可用范围	    |   所有 run 命令	             |       支持表达式的字段（如 if、with）|
 | 动态性	      |   静态值（运行时不可变）    	        | 动态（可被后续步骤修改的上下文）|
 
