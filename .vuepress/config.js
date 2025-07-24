@@ -199,6 +199,7 @@ export default defineUserConfig({
         },
       ],
       '/posts/linux/': [
+        'command',
         {
           text:'云服务器',
           prefix:'cloud/',
@@ -216,6 +217,14 @@ export default defineUserConfig({
       '/posts/git/': [
         '/posts/git/',
         '/posts/git/git-hooks',
+        {
+          text:'Github',
+          link: 'github/',
+          prefix: 'github/',
+          children: [
+              'github_action'
+          ]
+        },
       ],
       '/posts/vuepress/': [
           '/posts/vuepress/',

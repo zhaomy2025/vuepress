@@ -13,7 +13,7 @@ tags:
 [[toc]]
 ## 编写workflow文档
 在项目根目录下创建.github/workflows/deploy.yml文件，内容如下所示，这里给出了同时部署到云服务器和Github Pages的workflow文档，可以根据需要选择其中一个：
-@[code](../code/workflows/deploy-docs.yml)
+@[code](../code/github/workflows/deploy-docs.yml)
 
 ::: warning
 npm ci 命令会严格依照 package-lock.json 安装依赖，比 npm install 更严格，不容许任何版本偏差。因此需要将本地的 package-lock.json 文件上传到云服务器，以确保部署时使用相同的依赖版本。
