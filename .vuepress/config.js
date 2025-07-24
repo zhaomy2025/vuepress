@@ -19,6 +19,10 @@ export default defineUserConfig({
         link: '/posts/resource/',
       },
       {
+        text: 'JavaScript',
+        link: '/posts/java_script/',
+      },
+      {
         text: 'Java',
         link: '/posts/java/',
       },
@@ -73,6 +77,13 @@ export default defineUserConfig({
     ],
     sidebar: {
       '/posts/resource/': ['/posts/resource/'],
+      '/posts/java_script/':[
+        '/posts/java_script/',
+        {
+          text: 'nvm',
+          link: 'nvm',
+        },
+      ],
       '/posts/java/': [
           '/posts/java/',
           {
@@ -216,7 +227,7 @@ export default defineUserConfig({
       ],
       '/posts/git/': [
         '/posts/git/',
-        '/posts/git/git-hooks',
+        'git-hooks',
         {
           text:'Github',
           link: 'github/',
