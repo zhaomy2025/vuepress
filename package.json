@@ -10,7 +10,8 @@
     "dev": "vuepress dev docs",
     "update-package": "npx vp-update",
     "n": "node create-post.js",
-    "format": "node javaScript/remove-formatting.js"
+    "format": "node javaScript/remove-formatting.js",
+    "resource": "node javaScript/format-resource.js"
   },
   "devDependencies": {
     "@vuepress/bundler-vite": "2.0.0-rc.23",
