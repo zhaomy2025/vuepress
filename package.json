@@ -10,7 +10,7 @@
     "dev": "vuepress dev docs",
     "update-package": "npx vp-update",
     "n": "node create-post.js",
-    "format": "node javaScript/remove-formatting.js",
+    "format": "node javaScript/format-md.js",
     "resource": "node javaScript/format-resource.js"
   },
   "devDependencies": {
