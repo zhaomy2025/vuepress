@@ -9,7 +9,7 @@
     "clean-dev": "vuepress dev docs --clean-cache",
     "dev": "vuepress dev docs",
     "update-package": "npx vp-update",
-    "n": "node create-post.js",
+    "n": "node javaScript/create-post.js",
     "format": "node javaScript/format-md.js",
     "resource": "node javaScript/format-resource.js"
   },

@@ -48,25 +48,10 @@ JavaMail API 是发送和接收电子邮件的官方标准，支持 SMTP（发�
 ### Spring Framework 集成（企业级开发首选）
 Spring 提供 `JavaMailSender` 接口封装原生 API，简化配置和使用：
 
-```java
-@Service
-public class EmailService {
-    @Autowired
-    private JavaMailSender mailSender; // Spring自动配置的发送器
-
-    public void sendHtmlEmail(String to, String subject, String htmlContent) {
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
-        helper.setFrom("noreply@example.com");
-        helper.setTo(to);
-        helper.setSubject(subject);
-        helper.setText(htmlContent, true); // 第二个参数为true表示HTML内容
-        mailSender.send(message);
-    }
-}
-```
+@[code](../../../code/src/main/java/site/zmyblog/mail/EmailServiceExample.java)
 
 配置文件（application.yml）：
+
 ```yaml
 spring:
   mail:
@@ -80,14 +65,10 @@ spring:
 ```
 
 ## 关键技术点解析
-### 邮件服务器配置差异
-不同邮箱服务商的 SMTP 配置不同，需特别注意：
 
-| 邮箱类型   | SMTP服务器          | 端口（TLS） | 认证方式               |
-|------------|---------------------|-------------|------------------------|
-| Gmail      | smtp.gmail.com      | 587         | 应用专用密码           |
-| QQ邮箱     | smtp.qq.com         | 587         | 授权码（需在邮箱设置中开启） |
-| 163邮箱    | smtp.163.com        | 465         | 客户端授权密码         |
+### 邮件服务器配置差异
+
+<!-- @include:mail_smtp.md -->
 
 ### 最佳实践与避坑指南
 1. **安全存储凭证**：避免硬编码密码，使用环境变量或配置中心（如 Spring Cloud Config）

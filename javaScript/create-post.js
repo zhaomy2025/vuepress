@@ -23,7 +23,7 @@ tags:
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const relativeFilePath = tmpFilePath.endsWith('/') ? `${tmpFilePath}index.md` : `${tmpFilePath}.md`;
-const absoluteFilePath = path.join(__dirname, 'docs/posts/',relativeFilePath);
+const absoluteFilePath = path.join(__dirname, '/../docs/posts/',relativeFilePath);
 const dirPath = path.dirname(absoluteFilePath);
 
 console.log('准备创建目录',dirPath);
