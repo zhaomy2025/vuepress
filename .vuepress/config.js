@@ -120,6 +120,15 @@ export default defineUserConfig({
             ]
           },
           {
+            text: '模块',
+            prefix: 'module/',
+            children: [
+              'mail',
+              'java_mail',
+              'java_mail_sender'
+            ]
+          },
+          {
             text: '其他',
             prefix: 'misc/',
             children: [
