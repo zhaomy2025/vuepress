@@ -40,7 +40,7 @@ JavaMail API 是发送和接收电子邮件的官方标准，支持 SMTP（发�
 ### 原生 JavaMail 实现（适用于简单场景）
 
 #### 发送简单邮件
-@[code](../../../code/src/main/java/site/zmyblog/mail/EmailSender.java)
+@[code](../../../code/src/main/java/site/zmyblog/mail/EmailSenderExample.java)
 
 #### 复杂邮件构建
 通过 MimeMultipart 可组合多种内容类型，参考[JavaMail](./java_mail.md)。
