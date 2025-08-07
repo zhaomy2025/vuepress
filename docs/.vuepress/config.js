@@ -16,7 +16,7 @@ export default defineUserConfig({
     navbar: [
       {
         text: '资源',
-        link: '/posts/resource/',
+        link: '/resource/',
       },
       {
         text: 'JavaScript',
@@ -59,24 +59,16 @@ export default defineUserConfig({
         link: '/posts/others/',
       },
       {
-        text: '文章',
-        link: '/article/',
-      },
-      {
-        text: '目录',
-        link: '/category/',
-      },
-      {
-        text: '标签',
-        link: '/tag/',
-      },
-      {
-        text: 'Timeline',
-        link: '/timeline/',
-      },
+        text: 'AI',
+        link: '/ai/',
+      }
     ],
     sidebar: {
-      '/posts/resource/': ['/posts/resource/'],
+      '/resource/': [
+        '/resource/', 
+        '/resource/book',
+        '/resource/github'
+      ],
       '/posts/java_script/':[
         '/posts/java_script/',
         {
@@ -256,6 +248,16 @@ export default defineUserConfig({
       '/posts/others/': [
           '/posts/others/yaml',
       ],
+      '/ai':[
+        {
+          text: 'AI智能体',
+          link: 'ai_agent/',
+          prefix: 'ai_agent/',
+          children: [
+            'instruction',
+          ]
+        }
+      ]
     },
     sidebarDepth: 0,
   }),
