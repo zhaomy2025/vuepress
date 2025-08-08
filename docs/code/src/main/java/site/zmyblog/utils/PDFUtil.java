@@ -1,4 +1,4 @@
-package utils;
+package site.zmyblog.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

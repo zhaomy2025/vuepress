@@ -50,7 +50,7 @@ JavaMail API 是发送和接收电子邮件的官方标准，支持 SMTP（发�
 4. 创建邮件消息（MimeMessage），设置发件人、收件人、抄送人、主题、内容，添加附件
 5. 使用Transport发送邮件
 
-@[code](../../../code/src/main/java/site/zmyblog/mail/EmailSenderExample.java)
+@[code](../../code/src/main/java/site/zmyblog/mail/EmailSenderExample.java)
 
 :::tip
 如果使用smtps协议通过SSL访问SMTP，则所有属性都将命名为mail.smtps.*  
@@ -73,7 +73,7 @@ JavaMail API 是发送和接收电子邮件的官方标准，支持 SMTP（发�
     - setFileName(String fileName)：设置附件名称（支持中文需编码）
     - addHeader(String name, String value)： 设置MIME头信息
 
-@[code](../../../code/src/main/java/site/zmyblog/mail/EmailSenderWithAttachmentExample.java)
+@[code](../../code/src/main/java/site/zmyblog/mail/EmailSenderWithAttachmentExample.java)
 
 ## 配置详解
 ### mail.host 和 mail.[protocol].host

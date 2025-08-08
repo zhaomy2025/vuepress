@@ -14,7 +14,7 @@ tags:
 # Java 多线程编程
 [[toc]]
 
-在Java中，多线程是一种并发编程技术，允许程序同时执行多个任务。通过多线程，可以充分利用CPU资源，提高程序的执行效率和响应速度。Java提供了丰富的API来支持多线程编程，主要通过`java.lang.Thread`类和`java.util.concurrent`包来实现。
+<!-- @include: ./multithreading_intro.md -->
 
 ## 线程的基本概念
 
@@ -930,7 +930,7 @@ CompletableFuture创建异步任务，一般有supplyAsync和runAsync两个方�
 
 ##### supplyAsync
 
-:::tips
+```java
 //使用默认内置线程池ForkJoinPool.commonPool()，根据supplier构建执行任务
 
 public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier)
@@ -939,7 +939,7 @@ public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier)
 
 public static <U> CompletableFuture<U> supplyAsync(Supplier<U> supplier, Executor executor)
 
-:::
+```
 
 ```java
 import java.util.concurrent.CompletableFuture;
@@ -965,7 +965,7 @@ public class Main {
 
 ##### runAsync方法
 
-:::tips
+```
 //使用默认内置线程池ForkJoinPool.commonPool()，根据runnable构建执行任务
 
 public static CompletableFuture<Void> runAsync(Runnable runnable) 
@@ -974,7 +974,7 @@ public static CompletableFuture<Void> runAsync(Runnable runnable)
 
 public static CompletableFuture<Void> runAsync(Runnable runnable,  Executor executor)
 
-:::
+```
 
 ```java
 import java.util.concurrent.CompletableFuture;

@@ -56,7 +56,7 @@ spring:
 ```
 
 ## 发送附件
-@[code](../../../code/src/main/java/site/zmyblog/mail/EmailServiceExample.java)
+@[code](../../code/src/main/java/site/zmyblog/mail/EmailServiceExample.java)
 
 ## 抄送与密送
 ```java
@@ -101,4 +101,4 @@ public JavaMailSender javaMailSender() {
 
 ## 代码示例
 
-@[code](../../../code/src/main/java/site/zmyblog/mail/EmailService.java)
+@[code](../../code/src/main/java/site/zmyblog/mail/EmailService.java)

@@ -24,7 +24,7 @@ export default defineUserConfig({
       },
       {
         text: 'Java',
-        link: '/posts/java/',
+        link: '/java/',
       },
       {
         text: 'Spring',
@@ -76,8 +76,16 @@ export default defineUserConfig({
           link: 'nvm',
         },
       ],
-      '/posts/java/': [
-          '/posts/java/',
+      '/java/': [
+          '/java/',
+          {
+            text: 'Java 中级',
+            link: 'intermediate/',
+            prefix: 'intermediate/',
+            children: [
+                'multithreading',
+            ]
+          },
           {
             text:'工具库',
             prefix: 'utils/',

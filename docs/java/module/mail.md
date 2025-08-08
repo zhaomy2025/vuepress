@@ -40,7 +40,7 @@ JavaMail API 是发送和接收电子邮件的官方标准，支持 SMTP（发�
 ### 原生 JavaMail 实现（适用于简单场景）
 
 #### 发送简单邮件
-@[code](../../../code/src/main/java/site/zmyblog/mail/EmailSenderExample.java)
+@[code](../../code/src/main/java/site/zmyblog/mail/EmailSenderExample.java)
 
 #### 复杂邮件构建
 通过 MimeMultipart 可组合多种内容类型，参考[JavaMail](./java_mail.md)。
@@ -48,7 +48,7 @@ JavaMail API 是发送和接收电子邮件的官方标准，支持 SMTP（发�
 ### Spring Framework 集成（企业级开发首选）
 Spring 提供 `JavaMailSender` 接口封装原生 API，简化配置和使用：
 
-@[code](../../../code/src/main/java/site/zmyblog/mail/EmailServiceExample.java)
+@[code](../../code/src/main/java/site/zmyblog/mail/EmailServiceExample.java)
 
 配置文件（application.yml）：
 
