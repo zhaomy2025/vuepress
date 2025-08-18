@@ -12,6 +12,7 @@ tag:
 
 ## 常用搜索
 [DeepSeek](https://chat.deepseek.com/)  
+[秘塔AI搜索](https://metaso.cn/)  
 
 ## 技术博客
 [Java 全栈知识体系](https://pdai.tech/)
@@ -34,10 +35,18 @@ tag:
 [W3Cschool在线工具](https://123.w3cschool.cn/webtools)  
 [云转换](https://cloudconvert.com/)  
 
+## 插件
+
+### 翻译插件
+
+[会议](https://ad.huiyiai.net/site/huiyi2)
+
 ## AI工具
 [百度智能云千帆](https://cloud.baidu.com/product-s/qianfan_home)
+[ChirpChirp](https://chirpchirp.cc)  
+  一个实用的 Copy&Paste AI Prompt 的小工具。它的核心功能是：搜索预先写好的提示，然后复制粘贴到需要的地方。
 
-## 文档工具
+## 文档/建站工具
 [VuePress](https://vuepress.vuejs.org/zh/)  
 
 ## 后端开发
@@ -53,6 +62,11 @@ tag:
 [npmjs](https://www.npmjs.cn/)  
 [iviewui](https://www.iviewui.com/)  
 [caniuse](https://caniuse.com/)  
+
+## 测试
+
+[Reqable](https://reqable.com/zh-CN/)  
+  Reqable 是一款基于 Flutter 和 C++ 开发的跨平台 HTTP 调试与 API 测试工具，支持 HTTP/1、HTTP/2 和 HTTP/3（QUIC）协议，集抓包调试与接口测试于一体，提供高性能、轻量化的开发体验。
 
 ## 图片图标
 [Font Awesome](http://fontawesome.dashgame.com/)  
