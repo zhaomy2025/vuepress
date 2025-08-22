@@ -48,7 +48,7 @@ export default defineUserConfig({
       },
       {
         text: 'Git',
-        link: '/posts/git/',
+        link: '/git/',
       },
       {
         text: 'VuePress',
@@ -234,8 +234,9 @@ export default defineUserConfig({
           ]
         }
       ],
-      '/posts/git/': [
-        '/posts/git/',
+      '/git/': [
+        '/git/',
+        'git-ssh',
         'git-hooks',
         {
           text:'Github',
