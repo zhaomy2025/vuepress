@@ -16,7 +16,7 @@ export default defineUserConfig({
     navbar: [
       {
         text: '资源',
-        link: '/posts/resource/',
+        link: '/resource/',
       },
       {
         text: 'JavaScript',
@@ -24,7 +24,7 @@ export default defineUserConfig({
       },
       {
         text: 'Java',
-        link: '/posts/java/',
+        link: '/java/',
       },
       {
         text: 'Spring',
@@ -48,7 +48,7 @@ export default defineUserConfig({
       },
       {
         text: 'Git',
-        link: '/posts/git/',
+        link: '/git/',
       },
       {
         text: 'VuePress',
@@ -59,24 +59,16 @@ export default defineUserConfig({
         link: '/posts/others/',
       },
       {
-        text: '文章',
-        link: '/article/',
-      },
-      {
-        text: '目录',
-        link: '/category/',
-      },
-      {
-        text: '标签',
-        link: '/tag/',
-      },
-      {
-        text: 'Timeline',
-        link: '/timeline/',
-      },
+        text: 'AI',
+        link: '/ai/',
+      }
     ],
     sidebar: {
-      '/posts/resource/': ['/posts/resource/'],
+      '/resource/': [
+        '/resource/', 
+        '/resource/book',
+        '/resource/github'
+      ],
       '/posts/java_script/':[
         '/posts/java_script/',
         {
@@ -84,8 +76,16 @@ export default defineUserConfig({
           link: 'nvm',
         },
       ],
-      '/posts/java/': [
-          '/posts/java/',
+      '/java/': [
+          '/java/',
+          {
+            text: 'Java 中级',
+            link: 'intermediate/',
+            prefix: 'intermediate/',
+            children: [
+                'multithreading',
+            ]
+          },
           {
             text:'工具库',
             prefix: 'utils/',
@@ -234,8 +234,9 @@ export default defineUserConfig({
           ]
         }
       ],
-      '/posts/git/': [
-        '/posts/git/',
+      '/git/': [
+        '/git/',
+        'git-ssh',
         'git-hooks',
         {
           text:'Github',
@@ -256,6 +257,16 @@ export default defineUserConfig({
       '/posts/others/': [
           '/posts/others/yaml',
       ],
+      '/ai':[
+        {
+          text: 'AI智能体',
+          link: 'ai_agent/',
+          prefix: 'ai_agent/',
+          children: [
+            'instruction',
+          ]
+        }
+      ]
     },
     sidebarDepth: 0,
   }),
