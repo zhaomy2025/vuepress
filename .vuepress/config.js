@@ -10,7 +10,6 @@ export default defineUserConfig({
   lang: 'zh-CN',
   title: 'My Blog',
   description: '这是我的第一个 VuePress 站点',
-  base: '/vuepress/',
   theme: defaultTheme({
     logo: '/images/logo.png',
     navbar: [
@@ -65,7 +64,7 @@ export default defineUserConfig({
     ],
     sidebar: {
       '/resource/': [
-        '/resource/', 
+        '/resource/',
         '/resource/book',
         '/resource/github'
       ],
@@ -78,7 +77,7 @@ export default defineUserConfig({
       ],
       '/java/': [
           '/java/',
-          {
+                    {
             text: 'Java 中级',
             link: 'intermediate/',
             prefix: 'intermediate/',
@@ -374,12 +373,12 @@ export default defineUserConfig({
       hotReload: true,
     }),
     mdEnhancePlugin({
-      chartjs: true,
-      echarts: true,
-      flowchart: true,
-      markmap: true,
+      chartjs: false,
+      echarts: false,
+      flowchart: false,
+      markmap: false,
       mermaid: true,
-      plantuml: true,
+      plantuml: false,
     }),
     backToTopPlugin(),
     markdownTabPlugin({
