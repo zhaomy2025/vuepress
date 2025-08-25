@@ -141,4 +141,4 @@ boolean isEqual = hash1.equals(hash2);
 功能：
 - 基于MD5哈希值比较两个文件是否相同
 
-@[code](../../code/utils/FileUtils.java)
+@[code](../../code/src/main/java/site/zmyblog/utils/FileUtils.java)
