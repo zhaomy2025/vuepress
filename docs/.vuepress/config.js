@@ -18,10 +18,6 @@ export default defineUserConfig({
         link: '/resource/',
       },
       {
-        text: 'JavaScript',
-        link: '/posts/java_script/',
-      },
-      {
         text: 'Java',
         link: '/java/',
       },
@@ -55,25 +51,14 @@ export default defineUserConfig({
       },
       {
         text: '杂项',
-        link: '/posts/others/',
+        link: '/others/',
       },
-      {
-        text: 'AI',
-        link: '/ai/',
-      }
     ],
     sidebar: {
       '/resource/': [
         '/resource/',
         '/resource/book',
         '/resource/github'
-      ],
-      '/posts/java_script/':[
-        '/posts/java_script/',
-        {
-          text: 'nvm',
-          link: 'nvm',
-        },
       ],
       '/java/': [
           '/java/',
@@ -113,14 +98,7 @@ export default defineUserConfig({
                 'hutool'
             ]
           },
-          {
-            text: 'Json',
-            prefix: 'json/',
-            children:[
-                'fastjson2',
-                'jackson'
-            ]
-          },
+          
           {
             text: 'ORM',
             prefix: 'orm/',
@@ -142,6 +120,14 @@ export default defineUserConfig({
             text: '其他',
             prefix: 'misc/',
             children: [
+              {
+                text: 'Json',
+                prefix: 'json/',
+                children:[
+                    'fastjson2',
+                    'jackson'
+                ]
+              },
               'linked-hash-map-to-object',
             ]
           }
@@ -264,18 +250,17 @@ export default defineUserConfig({
           '/posts/vuepress/css',
           '/posts/vuepress/vuepress_cloud.md'
       ],
-      '/posts/others/': [
-          '/posts/others/yaml',
-      ],
-      '/ai':[
+      '/others/': [
+        '/others/',
+        'yaml',
         {
-          text: 'AI智能体',
-          link: 'ai_agent/',
-          prefix: 'ai_agent/',
+          text: 'JavaScript',
+          link: 'java-script/',
+          prefix: 'java-script/',
           children: [
-            'instruction',
+            'nvm',
           ]
-        }
+        },
       ]
     },
     sidebarDepth: 0,
