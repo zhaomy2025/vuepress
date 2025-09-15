@@ -73,7 +73,9 @@ Improve startup time by making the classes of an application instantly available
 Provide a standard API for parsing, generating, and transforming Java class files.
 :::
 
-之前在 JDK 22 和 JDK 23 中预览过的类文件 API 将在 JDK 24 中最终确定，但会略有改动。此 API 提供了一个用于解析、生成和转换 Java 类文件的标准 API。其目的是提供一个用于处理类文件的 API，该 API 跟踪 Java 虚拟机规范定义的类文件格式。第二个目标是使 JDK 组件能够迁移到标准 API，并最终删除 JDK 内部的第三方 ASM 库副本。自第二个预览版以来的更改包括重命名枚举值、删除某些字段、添加方法和方法重载、重命名方法以及删除被认为不必要的接口和方法。
+<!-- @include: ./class-file-api-intro.md -->
+
+自第二个预览版以来的更改包括重命名枚举值、删除某些字段、添加方法和方法重载、重命名方法以及删除被认为不必要的接口和方法。
 
 
 ## JEP 485: 流收集器
@@ -111,7 +113,7 @@ Enhance pattern matching by allowing primitive types in all pattern contexts, an
 Introduce an API to express vector computations that reliably compile at runtime to optimal vector instructions on supported CPU architectures, thus achieving performance superior to equivalent scalar computations.
 :::
 
-允许表达在运行时编译为最优向量指令的计算，用于高性能数值计算和 AI 推理等领域。
+<!-- @include:./vector-api-intro.md -->
 
 ## JEP 490:  ZGC：删除非分代模式
 
@@ -158,7 +160,7 @@ Enhance the Java programming language with the ability to succinctly import all 
 - 修改 java.se 模块的声明
 - 允许 type-import-on-demand 声明遮蔽模块导入声明
 
-## JEP 495: 简单源文件和实例主要方法（第四次预览）
+## JEP 495: 简单源文件和实例主方法（第四次预览）
 
 ::: info JEP 495: Simple Source Files and Instance Main Methods (Fourth Preview)
 Evolve the Java programming language so that beginners can write their first programs without needing to understand language features designed for large programs. Far from using a separate dialect of the language, beginners can write streamlined declarations for single-class programs and then seamlessly expand their programs to use more advanced features as their skills grow. Experienced developers can likewise enjoy writing small programs succinctly, without the need for constructs intended for programming in the large. This is a preview language feature.
@@ -166,8 +168,7 @@ Evolve the Java programming language so that beginners can write their first pro
 
 <!-- @include: ./jer-445-463-477-495-512-intro.md -->
 
-改动点：
-- 将**隐式声明的类和实例主方法**重命名为**简单源文件和实例主要方法**
+改动点：将**隐式声明的类和实例主方法**重命名为**简单源文件和实例主要方法**
 
 ## JEP 496: 基于抗量子模块格的密钥封装机制 & JEP 497: 基于模块格的抗量子数字签名算法
 
@@ -191,7 +192,7 @@ Java 会在运行时首次调用 sun.misc.Unsafe 中的任何内存访问方法�
 Simplify concurrent programming by introducing an API for structured concurrency. Structured concurrency treats groups of related tasks running in different threads as a single unit of work, thereby streamlining error handling and cancellation, improving reliability, and enhancing observability. This is a preview API.
 :::
 
-通过引入结构化并发 API 来简化并发编程。结构化并发将不同线程中运行的相关任务组视为单个工作单元，从而简化错误处理和取消，提高可靠性并增强可观测性。这是一个预览 API。
+<!-- @include:./structured-concurrency-intro.md -->
 
 ## JEP 501: 弃用 32 位 x86 端口并将其删除
 
