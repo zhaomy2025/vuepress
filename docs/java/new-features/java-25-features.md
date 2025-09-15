@@ -20,7 +20,7 @@ Java 25 于 2025 年 9 月发布，包含了多个新特性和改进。
 + JEP 511：模块导入声明由 JEP 476（Java 23） 提议预览，经过 JEP 494（Java 24）再次预览，最终在 JEP 511（Java 25）中正式引入。
 + JEP 512：压缩源文件和实例 main 方法
   - JEP 445（Java 21）: 未命名类和实例 main 方法（预览)
-  - JEP 463（Java 22）: 隐式声明类和实例 main 方法（第二次预览）
+  - JEP 463（Java 22）: 隐式声明的类和实例 main 方法（第二次预览）
   - JEP 477（Java 23）: 隐式声明的类和实例 main 方法（第三次预览）
   - JEP 495（Java 24）：简单源文件和实例 main 方法（第四次预览）
 + JEP 513：灵活的构造函数体经过Java22-24三次预览，最终在JEP 513（Java 25）中正式引入。
@@ -134,7 +134,7 @@ Enhance the Java programming language with the ability to succinctly import all 
 Evolve the Java programming language so that beginners can write their first programs without needing to understand language features designed for large programs. Far from using a separate dialect of the language, beginners can write streamlined declarations for single-class programs and then seamlessly expand their programs to use more advanced features as their skills grow. Experienced developers can likewise enjoy writing small programs succinctly, without the need for constructs intended for programming in the large.
 :::
 
-发展 Java 编程语言，使初学者无需了解专为大型程序设计的语言功能，即可编写自己的第一个程序。
+<!-- @include: ./jer-445-463-477-495-512-intro.md -->
 
 改动点：
 - 将简单的源文件重命名为紧凑的源文件
