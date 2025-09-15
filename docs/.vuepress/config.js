@@ -83,7 +83,9 @@ export default defineUserConfig({
             prefix: 'new-features/',
             children: [
                 'java-25-features',
-                'java-24-features'
+                'java-24-features',
+                'java-23-features',
+                'java-22-features'
             ]
           },
           {
