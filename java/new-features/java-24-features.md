@@ -135,7 +135,7 @@ Improve the scalability of Java code that uses synchronized methods and statemen
 In constructors in the Java programming language, allow statements to appear before an explicit constructor invocation, i.e., super(..) or this(..). The statements cannot reference the instance under construction, but they can initialize its fields. Initializing fields before invoking another constructor makes a class more reliable when methods are overridden. This is a preview language feature.
 :::
 
-在 Java 编程语言的构造函数中，允许在显式构造函数调用（即 super(..) 或 this(..)）之前出现语句。这些语句不能引用正在构建的实例，但可以初始化其字段。在调用另一个构造函数之前初始化字段，可以在方法被重写时提高类的可靠性。这是一个预览语言特性。
+<!-- @include:./flexible-constructor-bodies-intro.md -->
 
 ## JEP 493: 无需 JMOD 即可链接运行时图像
 
@@ -151,7 +151,12 @@ Reduce the size of the JDK by approximately 25% by enabling the jlink tool to cr
 Enhance the Java programming language with the ability to succinctly import all of the packages exported by a module. This simplifies the reuse of modular libraries, but does not require the importing code to be in a module itself. This is a preview language feature.
 :::
 
-模块导入声明，之前在 JDK 23 中预览过，增强了 Java 编程语言的功能，使其能够简洁地导入模块导出的所有包。这简化了模块库的重用，但不需要将代码导入为模块本身。第二个预览版增加了一些功能，包括解除任何模块都不能声明对 java.base 模块的传递依赖的限制、修改 java.se 模块的声明以及允许 type-import-on-demand 声明遮蔽模块导入声明。
+<!-- @include: ./module-Import-declarations-intro.md -->
+
+之前在 JDK 23 中预览过，本次改动点：
+- 解除任何模块都不能声明对 java.base 模块的传递依赖的限制
+- 修改 java.se 模块的声明
+- 允许 type-import-on-demand 声明遮蔽模块导入声明
 
 ## JEP 495: 简单源文件和实例主要方法（第四次预览）
 
@@ -159,7 +164,10 @@ Enhance the Java programming language with the ability to succinctly import all 
 Evolve the Java programming language so that beginners can write their first programs without needing to understand language features designed for large programs. Far from using a separate dialect of the language, beginners can write streamlined declarations for single-class programs and then seamlessly expand their programs to use more advanced features as their skills grow. Experienced developers can likewise enjoy writing small programs succinctly, without the need for constructs intended for programming in the large. This is a preview language feature.
 :::
 
-简单源文件和实例主方法的第四个预览将改进 Java 语言，以便初学者可以编写他们的第一个程序，而无需了解为大型程序设计的语言功能。该功能之前已在 JDK 21 、 JDK 22 和 JDK 23 中预览过。目标是允许初级 Java 程序员为单类程序编写精简的声明，然后随着技能的增长无缝扩展他们的程序以使用更高级的功能。
+<!-- @include: ./jer-445-463-477-495-512-intro.md -->
+
+改动点：
+- 将**隐式声明的类和实例主方法**重命名为**简单源文件和实例主要方法**
 
 ## JEP 496: 基于抗量子模块格的密钥封装机制 & JEP 497: 基于模块格的抗量子数字签名算法
 
