@@ -77,7 +77,16 @@ export default defineUserConfig({
       ],
       '/java/': [
           '/java/',
-                    {
+          {
+            text: 'Java 新特性',
+            link: 'new-features/',
+            prefix: 'new-features/',
+            children: [
+                'java-25-features',
+                'java-24-features'
+            ]
+          },
+          {
             text: 'Java 中级',
             link: 'intermediate/',
             prefix: 'intermediate/',
