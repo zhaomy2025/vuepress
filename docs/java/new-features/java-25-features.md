@@ -18,11 +18,11 @@ Java 25 于 2025 年 9 月发布，包含了多个新特性和改进。
   - JEP 487（Java 24）：作用域值（第四次预览）
 + JEP 510：密钥派生函数 API
 + JEP 511：模块导入声明由 JEP 476（Java 23） 提议预览，经过 JEP 494（Java 24）再次预览，最终在 JEP 511（Java 25）中正式引入。
-+ JEP 512：压缩源文件和实例 main 方法
-  - JEP 445（Java 21）: 未命名类和实例 main 方法（预览)
-  - JEP 463（Java 22）: 隐式声明的类和实例 main 方法（第二次预览）
-  - JEP 477（Java 23）: 隐式声明的类和实例 main 方法（第三次预览）
-  - JEP 495（Java 24）：简单源文件和实例 main 方法（第四次预览）
++ JEP 512：压缩源文件和实例主方法
+  - JEP 445（Java 21）: 未命名类和实例主方法（预览)
+  - JEP 463（Java 22）: 隐式声明的类和实例主方法（第二次预览）
+  - JEP 477（Java 23）: 隐式声明的类和实例主方法（第三次预览）
+  - JEP 495（Java 24）：简单源文件和实例主方法（第四次预览）
 + JEP 513：灵活的构造函数体经过Java22-24三次预览，最终在JEP 513（Java 25）中正式引入。
   - JEP 447（Java 22）: super() 前语句（预览）
   - JEP 482（Java 23）: 灵活的构造函数（第二次预览）
@@ -64,13 +64,13 @@ Remove the source code and build support for the 32-bit x86 port. This port was 
 
 移除32位x86端口的源代码和构建支持。该端口在JDK 24（JEP 501）中已被标记为弃用，明确计划在未来版本中移除。
 
-## JEP 505：结构化并发（第五个预览版）
+## JEP 505：结构化并发（第五次预览）
 
 ::: info JEP 505: Structured Concurrency (Fifth Preview)
 Simplify concurrent programming by introducing an API for structured concurrency. Structured concurrency treats groups of related tasks running in different threads as single units of work, thereby streamlining error handling and cancellation, improving reliability, and enhancing observability. This is a preview API.
 :::
 
-通过引入结构化并发 API 来简化并发编程。结构化并发将不同线程中运行的相关任务组视为单个工作单元，从而简化错误处理和取消，提高可靠性并增强可观测性。这是一个预览 API。
+<!-- @include:./structured-concurrency-intro.md -->
 
 [结构化并发](./structured-concurrency-guide.md)
 
@@ -102,7 +102,7 @@ Enhance pattern matching by allowing primitive types in all pattern contexts, an
 Introduce an API to express vector computations that reliably compile at runtime to optimal vector instructions on supported CPUs, thus achieving performance superior to equivalent scalar computations.
 :::
 
-引入一个 API 来表达矢量计算，这些计算在运行时可靠地编译为受支持的 CPU 上的最佳矢量指令，从而实现优于等效标量计算的性能。
+<!-- @include:./vector-api-intro.md -->
 
 ## JEP 509： JEP 509：JFR CPU 时间分析（实验性）
 
@@ -128,7 +128,7 @@ Enhance the Java programming language with the ability to succinctly import all 
 
 通过简洁地导入模块导出的所有包的功能来增强 Java 编程语言。这简化了模块库的重用，但不要求导入代码本身必须在模块中。
 
-## JEP 512：压缩源文件和实例 main 方法
+## JEP 512：压缩源文件和实例主方法
 
 ::: info JEP 512: Compact Source Files and Instance Main Methods
 Evolve the Java programming language so that beginners can write their first programs without needing to understand language features designed for large programs. Far from using a separate dialect of the language, beginners can write streamlined declarations for single-class programs and then seamlessly expand their programs to use more advanced features as their skills grow. Experienced developers can likewise enjoy writing small programs succinctly, without the need for constructs intended for programming in the large.

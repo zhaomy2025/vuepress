@@ -23,8 +23,7 @@ Enhance pattern matching by allowing primitive type patterns in all pattern cont
 Provide a standard API for parsing, generating, and transforming Java class files. This is a preview API.
 :::
 
-提供了一个用于解析、生成和转换 Java 类文件的标准 API。这是一个预览 API。
-
+<!-- @include: ./class-file-api-intro.md -->
 
 ### JER 467: Markdown 文档注释
 
@@ -34,12 +33,13 @@ Enable JavaDoc documentation comments to be written in Markdown rather than sole
 
 允许JavaDoc文档注释使用Markdown语法编写，而不再仅限于HTML和JavaDoc @-tags的混合格式。
 
-### JER 469: 向量API (第八个孵化器)
+### JER 469: 向量 API (第八个孵化器)
 ::: info JEP 469: Vector API (Eighth Incubator)
 Introduce an API to express vector computations that reliably compile at runtime to optimal vector instructions on supported CPU architectures, thus achieving performance superior to equivalent scalar computations.
 :::
 
-推出一套用于表达向量计算的API，该API能够在运行时在支持的CPU架构上可靠地编译成最优向量指令，从而实现优于等效标量计算的性能表现。
+<!-- @include:./vector-api-intro.md -->
+[向量 API](./vector-api-guide.md)
 
 ### JER 471: 弃用 sun.misc.Unsafe 中的内存访问方法，以便删除
 
@@ -87,7 +87,7 @@ Evolve the Java programming language so that beginners can write their first pro
 Simplify concurrent programming by introducing an API for structured concurrency. Structured concurrency treats groups of related tasks running in different threads as a single unit of work, thereby streamlining error handling and cancellation, improving reliability, and enhancing observability. This is a preview API.
 :::
 
-通过引入结构化并发 API 来简化并发编程。结构化并发将不同线程中运行的相关任务组视为单个工作单元，从而简化错误处理和取消，提高可靠性并增强可观测性。这是一个预览 API。
+<!-- @include:./structured-concurrency-intro.md -->
 
 [结构化并发](./structured-concurrency-guide.md)
 
