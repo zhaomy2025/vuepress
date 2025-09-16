@@ -9,3 +9,12 @@ tags:
 
 # Git
 [[toc]]
+
+## 远程仓库
+```
+# 查看远程仓库
+git remote -v
+
+# 修改远程仓库
+git remote set-url origin <new_url>
+```
