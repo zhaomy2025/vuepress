@@ -230,7 +230,7 @@ switch (v) {
 v instanceof JsonNumber(double a)
 ```
 
-为了支持通过模式匹配对匹配候选 v 进行更统一的数据探索，我们将：
+为了支持通过模式匹配对匹配候选进行更统一的数据探索，我们将：
 
 - 扩展模式匹配，以便原始类型模式适用于更广泛的匹配候选类型。这将允许诸如 `v instanceof JsonNumber(int age)` 之类的表达式。
 - 增强 instanceof 和 switch 构造以支持原始类型模式作为顶级模式。
