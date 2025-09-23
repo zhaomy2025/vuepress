@@ -4,7 +4,7 @@
 
 ## 概述
 
-Java 24 于 2025 年 3 月发布，包含了多个新特性和改进。
+Java 24 于 2025 年 3 月发布，该版本提供24项新特性（含10项孵化/预览/实验功能）
 
 ## JEP 404: 分代 Shenandoah（实验性）
 
@@ -12,7 +12,7 @@ Java 24 于 2025 年 3 月发布，包含了多个新特性和改进。
 Enhance the Shenandoah garbage collector with experimental generational collection capabilities to improve sustainable throughput, load-spike resilience, and memory utilization.
 :::
 
-通过实验性分代收集功能增强 Shenandoah 垃圾回收器 ，以提高可持续吞吐量、负载峰值弹性和内存利用率。
+通过实验性分代收集功能增强 Shenandoah 垃圾回收器，以提高可持续吞吐量、负载峰值弹性和内存利用率。
 
 <!-- @include:generational-shenandoah-intro.md -->
 
@@ -22,7 +22,7 @@ Enhance the Shenandoah garbage collector with experimental generational collecti
 Reduce the size of object headers in the HotSpot JVM from between 96 and 128 bits down to 64 bits on 64-bit architectures. This will reduce heap size, improve deployment density, and increase data locality.
 :::
 
-重构了Java对象的内存布局，将 HotSpot JVM中的普通对象头大小从96到128位减少到64位，从而提升内存利用率和应用性能。
+重构了Java对象的内存布局，将 HotSpot JVM 中的普通对象头大小从96到128位减少到64位，从而提升内存利用率和应用性能。
 
 <!-- @include:compact-object-headers-intro.md -->
 
@@ -42,7 +42,7 @@ JEP 472（Prepare to Restrict the Use of JNI）是JDK 24中的一个重要提案
 Simplify the implementation of the G1 garbage collector's barriers, which record information about application memory accesses, by shifting their expansion from early in the C2 JIT's compilation pipeline to later.
 :::
 
-G1 垃圾收集器的后期屏障扩展旨在通过将屏障的扩展从 C2 编译管道的早期移到后期来简化 G1 屏障的实现。屏障记录有关应用程序内存访问的信息。目标包括减少使用 G1 收集器时 C2 编译的执行时间，使对 C2 缺乏深入了解的 HotSpot 开发人员能够理解 G1 屏障，并确保 C2 保留有关内存访问、安全点和屏障的相对顺序的不变量。第四个功能是保留 C2 生成的 JIT（即时）编译代码的质量（速度和大小）。
+通过将G1垃圾回收器屏障的生成时机，从C2 JIT编译前期移至后期，简化了其实现。这些屏障的作用是记录有关应用程序内存访问的信息。
 
 ## JEP 478: 密钥派生函数 API（预览）
 
@@ -50,7 +50,13 @@ G1 垃圾收集器的后期屏障扩展旨在通过将屏障的扩展从 C2 编�
 Introduce an API for Key Derivation Functions (KDFs), which are cryptographic algorithms for deriving additional keys from a secret key and other data. This is a preview API.
 :::
 
-借助密钥派生函数 (KDF) API，将引入用于密钥派生函数的 API，这些函数是用于从密钥和其他数据派生其他密钥的加密算法。此提案的目标是允许安全提供商以 Java 代码或本机代码实现 KDF 算法。另一个目标是使应用程序能够使用 KDF 算法，例如基于 HMAC（哈希消息认证码）的提取和扩展密钥派生函数 ( RFC 5869 ) 和 Argon2 ( RFC 9106 )。
+引入一个用于密钥派生函数的预览版API。密钥派生函数是一种可从密钥及其他数据中推导出更多密钥的密码学算法。
+
+**目标**：
+- 使应用程序能够使用KDF算法，例如基于HMAC的提取-扩展密钥派生函数（HKDF，RFC 5869）和Argon2（RFC 9106）。
+- 支持在密钥封装机制（KEM，JEP 452）实现（如ML-KEM）、高层协议（如TLS 1.3中的混合密钥交换）以及密码方案（如混合公钥加密HPKE，RFC 9180）中使用KDF。
+- 允许安全提供商使用Java代码或原生代码来实现KDF算法。
+- 包含了HKDF的一个实现，并引入了额外的HKDF专用API。
 
 ## JEP 479: 删除 Windows 32 位 x86 端口
 
@@ -58,14 +64,17 @@ Introduce an API for Key Derivation Functions (KDFs), which are cryptographic al
 Remove the source code and build support for the Windows 32-bit x86 port. This port was deprecated for removal in JDK 21 with the express intent to remove it in a future release.
 :::
 
-移除针对 Windows 32 位 x86 端口的源代码和构建支持。该端口在 JDK 21 中已被标记为“弃用以待移除”，并明确表达了在未来的版本中将其移除的意图。
+移除针对 Windows 32 位 x86 端口的源代码和构建支持。该端口已在 JDK 21 中被标记为弃用并计划移除，并明确表达了在未来的版本中将其移除的意图。
 
 ## JEP 483: 提前类加载和链接
+
 ::: info JEP 483: Ahead-of-Time Class Loading & Linking
-Improve startup time by making the classes of an application instantly available, in a loaded and linked state, when the HotSpot Java Virtual Machine starts. Achieve this by monitoring the application during one run and storing the loaded and linked forms of all classes in a cache for use in subsequent runs. Lay a foundation for future improvements to both startup and warmup time.
+Improve startup time by making the classes of an application instantly available, in a loaded and linked state, when the HotSpot Java Virtual Machine starts.Achieve this by monitoring the application during one run and storing the loaded and linked forms of all classes in a cache for use in subsequent runs. Lay a foundation for future improvements to both startup and warmup time.
 :::
 
-提前类加载和链接旨在缩短启动时间，方法是在 HotSpot Java 虚拟机启动时，使应用程序的类立即处于加载和链接状态。这将通过在一次运行期间监视应用程序并将所有类的加载和链接形式存储在缓存中以供后续运行使用来实现。
+通过让应用程序的类在 HotSpot Java 虚拟机启动时就能立即可用（即已完成加载和链接），来提升启动速度。
+其实现方式是：在应用的一次运行期间进行监控，并将所有类的加载和链接形式存储在缓存中以供后续运行使用。
+这同时也为未来优化启动与预热时间打下了基础。
 
 ## JEP 484: 类文件 API
 
@@ -82,22 +91,29 @@ Provide a standard API for parsing, generating, and transforming Java class file
 ::: info JEP 485: Stream Gatherers
 Enhance the Stream API to support custom intermediate operations. This will allow stream pipelines to transform data in ways that are not easily achievable with the existing built-in intermediate operations.
 :::
-流收集器（Stream Gatherers）能为Stream API轻松添加自定义的中间操作，实现更复杂的数据转换。
+
+<!-- @include: ./stream-gatherers-guide-intro.md -->
+
+[流收集器](./stream-gatherers-guide.md)
 
 ## JEP 486: 永久禁用安全管理器
 ::: info JEP 486: Permanently Disable the Security Manager
 The Security Manager has not been the primary means of securing client-side Java code for many years, it has rarely been used to secure server-side code, and it is costly to maintain. We therefore deprecated it for removal in Java 17 via JEP 411 (2021). As the next step toward removing the Security Manager, we will revise the Java Platform specification so that developers cannot enable it and other Platform classes do not refer to it. This change will have no impact on the vast majority of applications, libraries, and tools. We will remove the Security Manager API in a future release.
 :::
 
-永久禁用安全管理器需要修改 Java 平台规范，以便开发人员无法启用安全管理器，而其他平台类则不会引用它。提案指出，多年来，安全管理器一直不是保护客户端 Java 代码的主要手段，很少用于保护服务器端代码，而且维护成本高昂。安全管理器已在 Java 17 中被弃用并被删除。
+安全管理器早已不是保护客户端Java代码的主要手段，在服务端代码中也鲜有应用，且维护成本高昂。因此，该机制已于2021年通过JEP 411在Java 17中被标记为弃用并计划移除。作为移除工作的下一步，Java平台规范将进行修订，使开发者无法启用该功能，并确保其他平台类不再引用它。此项变更对绝大多数应用程序、库和工具不会产生任何影响。Security Manager API将在未来版本中被彻底移除。
 
 
-## JEP 487: 范围值（第四个预览版）
+## JEP 487: 作用域值（第四次预览）
 ::: info JEP 487: Scoped Values (Fourth Preview)
 Introduce scoped values, which enable a method to share immutable data both with its callees within a thread, and with child threads. Scoped values are easier to reason about than thread-local variables. They also have lower space and time costs, especially when used together with virtual threads (JEP 444) and structured concurrency (JEP 480). This is a preview API.
 :::
 
-范围值使方法能够与线程内的调用方和子线程共享不可变数据。范围值比本地线程变量更容易推理。它们还具有较低的空间和时间成本，特别是与虚拟线程和结构化并发一起使用时。范围值 API 是在 JDK 20 中提出的孵化版，在 JDK 21 中提出的预览版，并针对 JDK 22 和 JDK 23 进行了改进和完善。范围值将在 JDK 24 中预览。
+<!-- @include: ./scoped-values-guide-intro.md -->
+
+[作用域值](./scoped-values-guide.md)
+
+有一个变动：移除了 `ScopedValue` 类中的 `callWhere` 和 `runWhere` 方法，使 API 保持完全流畅的链式调用特性。现在使用一个或多个绑定作用域值的唯一方式是通过 `ScopedValue.Carrier.call` 和 `ScopedValue.Carrier.run` 方法。
 
 ## JEP 488: 模式、instanceof 和 switch中的原始类型（第二次预览）
 ::: info JEP 488: Primitive Types in Patterns, instanceof, and switch (Second Preview)
@@ -121,7 +137,7 @@ Introduce an API to express vector computations that reliably compile at runtime
 Remove the non-generational mode of the Z Garbage Collector (ZGC), keeping the generational mode as the default for ZGC.
 :::
 
-删除 Z 垃圾收集器 (ZGC) 的非分代模式，旨在降低支持两种不同模式的维护成本。该提案指出，维护非分代 ZGC 会减慢新功能的开发速度，而对于大多数用例而言，分代 ZGC 应该是比非分代 ZGC 更好的解决方案。后者最终应该被前者取代，以降低长期维护成本。该计划要求通过淘汰 ZGenerational 选项并删除非分代 ZGC 代码及其测试来删除非分代模式。非分代模式将在未来的版本中过期，届时它将不会被 HotSpot JVM 识别，从而拒绝启动。
+移除Z垃圾回收器（ZGC）的非分代模式，保留分代模式作为ZGC的默认配置。
 
 ## JEP 491: 无需固定即可同步虚拟线程
 
@@ -129,7 +145,7 @@ Remove the non-generational mode of the Z Garbage Collector (ZGC), keeping the g
 Improve the scalability of Java code that uses synchronized methods and statements by arranging for virtual threads that block in such constructs to release their underlying platform threads for use by other virtual threads. This will eliminate nearly all cases of virtual threads being pinned to platform threads, which severely restricts the number of virtual threads available to handle an application's workload.
 :::
 
-优化了虚拟线程在同步操作（如 `synchronized`）时的性能，减少了“线程固定”（pinning）问题，从而提升了虚拟线程的吞吐量和可扩展性。
+本改进旨在提升使用同步方法和语句的Java代码的可扩展性。其机制是：当虚拟线程在此类同步结构中阻塞时，会主动释放其占用的平台线程，以供其他虚拟线程使用。此举将消除虚拟线程被“固定”在平台线程上的绝大多数情况，从而避免其对应用工作负载处理能力的严重限制。
 
 ## JEP 492: 灵活的构造函数体（第三次预览）
 
@@ -144,8 +160,7 @@ In constructors in the Java programming language, allow statements to appear bef
 ::: info JEP 493: Linking Run-Time Images without JMODs
 Reduce the size of the JDK by approximately 25% by enabling the jlink tool to create custom run-time images without using the JDK's JMOD files. This feature must be enabled when the JDK is built; it will not be enabled by default, and some JDK vendors may choose not to enable it.
 :::
-
-通过链接不使用 JMOD 的运行时映像，计划通过启用 jlink 工具来创建不使用 JDK JMOD（模块化 JAR）文件的自定义运行时映像，将 JDK 的大小减少约 25%。在构建 JDK 时必须启用此功能（默认情况下不会启用），某些 JDK 供应商可能选择不启用它。目标包括允许用户从模块链接运行时映像，而不管这些模块是独立的 JMOD 文件、模块化 JAR 文件还是先前链接的运行时映像的一部分。提出该提案的动机是，在云环境中，文件系统上安装的 JDK 的大小非常重要，因为包含已安装 JDK 的容器映像会通过网络自动且频繁地从容器注册表复制。减小 JDK 的大小将提高这些操作的效率。
+通过让 jlink 工具能够在不依赖 JDK 的 JMOD 文件的情况下创建自定义运行时镜像，可将 JDK 的体积减小约 25%。此功能需在构建 JDK 时手动启用，它不会默认生效，且部分 JDK 供应商可能会选择不启用它。
 
 ## JEP 494: 模块导入声明（第二次预览）
 
@@ -170,13 +185,21 @@ Evolve the Java programming language so that beginners can write their first pro
 
 改动点：将**隐式声明的类和实例主方法**重命名为**简单源文件和实例主要方法**
 
-## JEP 496: 基于抗量子模块格的密钥封装机制 & JEP 497: 基于模块格的抗量子数字签名算法
+## JEP 496: 基于抗量子模块格的密钥封装机制
 
 ::: info JEP 496: Quantum-Resistant Module-Lattice-Based Key Encapsulation Mechanism
 Enhance the security of Java applications by providing an implementation of the quantum-resistant Module-Lattice-Based Key-Encapsulation Mechanism (ML-KEM). Key encapsulation mechanisms (KEMs) are used to secure symmetric keys over insecure communication channels using public key cryptography. ML-KEM is designed to be secure against future quantum computing attacks. It has been standardized by the United States National Institute of Standards and Technology (NIST) in FIPS 203.
 :::
 
-为通过抗量子性提高 Java 安全性而提出的两个功能包括抗量子的基于模块格的密钥封装机制(ML-KEM) 和抗量子的基于模块格的数字签名算法(ML-DSA)。ML-DSA 将通过提供抗量子的数字签名来检测对数据的未经授权的修改并验证签名者的身份，从而防止未来的量子计算攻击。密钥封装机制 (KEM) 用于使用公钥加密技术通过不安全的通信通道保护对称密钥。这两个功能都旨在防止未来的量子计算攻击。下一步将是引入对这些 API 和密钥派生函数 API 的 TLS（传输层安全性）支持。
+通过提供抗量子的基于模块格的密钥封装机制（ML-KEM）实现，增强Java应用程序的安全性。密钥封装机制（KEM）利用公钥密码学，在不安全通信信道中保护对称密钥的安全传输。ML-KEM的设计旨在抵御未来量子计算攻击，并已由美国国家标准与技术研究院（NIST）在FIPS 203中完成标准化。
+
+## JEP 497: 基于模块格的抗量子数字签名算法
+
+::: info JEP 497: Quantum-Resistant Module-Lattice-Based Digital Signature Algorithm
+Enhance the security of Java applications by providing an implementation of the quantum-resistant Module-Lattice-Based Digital Signature Algorithm (ML-DSA). Digital signatures are used to detect unauthorized modifications to data and to authenticate the identity of signatories. ML-DSA is designed to be secure against future quantum computing attacks. It has been standardized by the United States National Institute of Standards and Technology (NIST) in FIPS 204.
+:::
+
+通过提供抗量子计算的基于模块格的数字签名算法（ML-DSA）实现，增强Java应用程序的安全性。数字签名技术用于检测数据的非法篡改，并对签名者身份进行认证。ML-DSA的设计旨在抵御未来量子计算攻击，并已由美国国家标准与技术研究院（NIST）在FIPS 204中完成标准化。
 
 ## JEP 498: 在 sun.misc.Unsafe 中使用内存访问方法时发出警告
 
@@ -184,7 +207,9 @@ Enhance the security of Java applications by providing an implementation of the 
 Issue a warning at run time on the first occasion that any memory-access method in sun.misc.Unsafe is invoked. All of these unsupported methods were terminally deprecated in JDK 23. They have been superseded by standard APIs, namely the VarHandle API (JEP 193, JDK 9) and the Foreign Function & Memory API (JEP 454, JDK 22). We strongly encourage library developers to migrate from sun.misc.Unsafe to supported replacements, so that applications can migrate smoothly to modern JDK releases.
 :::
 
-Java 会在运行时首次调用 sun.misc.Unsafe 中的任何内存访问方法时发出警告。所有这些不受支持的方法在 JDK 23 中都已弃用，并已被标准 API 取代。创建 sun.misc.Unsafe 类是为了为 Java 类提供一种执行低级操作的机制。它的大多数方法用于访问内存，无论是在 JVM 的垃圾收集堆中还是在堆外内存中，这些内存不受 JVM 控制。正如类名所示，这些内存访问方法是不安全的。
+在运行时首次调用 sun.misc.Unsafe 中的任何内存访问方法时发出警告。 所有这些不受支持的方法已在 JDK 23 中被最终标记为弃用。它们已被标准 API 所取代，即 VarHandle API（JEP 193，JDK 9）和外部函数与内存 API（JEP 454，JDK 22）。强烈建议库开发者从 sun.misc.Unsafe 迁移至受支持的替代方案，以确保应用能够顺利过渡到现代 JDK 版本。
+
+> 创建 sun.misc.Unsafe 类是为了为 Java 类提供一种执行低级操作的机制。它的大多数方法用于访问内存，无论是在 JVM 的垃圾收集堆中还是在堆外内存中，这些内存不受 JVM 控制。正如类名所示，这些内存访问方法是不安全的。
 
 ## JEP 499: 结构化并发（第四次预览）
 
@@ -200,4 +225,7 @@ Simplify concurrent programming by introducing an API for structured concurrency
 Deprecate the 32-bit x86 port, with the intent to remove it in a future release. This will thereby deprecate the Linux 32-bit x86 port, which is the only 32-bit x86 port remaining in the JDK. It will also, effectively, deprecate any remaining downstream 32-bit x86 ports. After the 32-bit x86 port is removed, the architecture-agnostic Zero port will be the only way to run Java programs on 32-bit x86 processors.
 :::
 
-弃用 32 位 x86 端口并删除，这是在弃用 Windows 32 位 x86 端口的提议之后做出的，这将弃用 Linux 32 位 x86 端口，这是 JDK 中剩余的唯一 32 位 x86 端口。它还将有效弃用任何剩余的下游 32 位 x86 端口。在删除 32 位 x86 端口后，与架构无关的零端口将成为在 32 位 x86 处理器上运行 Java 程序的唯一方法。在 JDK 24 中弃用 32 位 x86 端口将允许在 JDK 25 中将其删除。
+弃用 32 位 x86 端口，并计划在未来版本中将其移除。此举将导致目前 JDK 中唯一剩余的 32 位 x86 端口——Linux 32 位 x86 端口被弃用，同时也将实质上弃用所有下游衍生的 32 位 x86 移植版本。在该端口被移除后，与架构无关的 Zero 移植版本将成为在 32 位 x86 处理器上运行 Java 程序的唯一方式。
+
+## 参考资料
+[JDK 24](https://openjdk.org/projects/jdk/24/)
