@@ -4,11 +4,9 @@
 
 ## 概述
 
-Java 25 于 2025 年 9 月发布，包含了多个新特性和改进。
+Java 25 LTS 版本已按计划于2025年9月16日正式发布，该版本提供18项新特性（含6项预览功能），延续了两年发布一次LTS版本的策略。
 
-## 主要特性
-
-### 正式特性
+## 正式特性
 
 + JEP 503：移除 32 位 x86 端口
 + JEP 506：作用域值由 JEP 429 （Java 20） 提议孵化，经过 Java21-24 四次预览，最终在JEP 506（Java 25）中正式引入。
@@ -31,16 +29,28 @@ Java 25 于 2025 年 9 月发布，包含了多个新特性和改进。
 + JEP 515：超前方法剖析
 + JEP 518：JFR 合作采样
 + JEP 519：紧凑对象标头
-  - JEP 450：紧凑对象标头（实验性）
+  - JEP 450（Java 24）：紧凑对象标头（实验性）
++ JEP 520：JFR 方法时序和跟踪
 + JEP 521：分代 Shenandoah
-  - JEP 404：分代 Shenandoah（实验性）
+  - JEP 404（Java 24）：分代 Shenandoah（实验性）
 
-### 预览特性
+## 预览特性
 
++ JEP 470：加密对象的 PEM 编码（预览）
 + JEP 502：稳定值（预览）
 + JEP 505：结构化并发（第五次预览）
 + JEP 507：模式、instanceof 和 switch中的原始类型（第三次预览）
++ JEP 508：向量 API（第十次孵化）
 + JEP 509：JFR CPU 时间分析（实验性）
+
+
+## JEP 470：加密对象的 PEM 编码（预览）
+
+::: info JEP 470: PEM Encodings of Cryptographic Objects (Preview)
+Introduce an API for encoding objects that represent cryptographic keys, certificates, and certificate revocation lists into the widely-used Privacy-Enhanced Mail (PEM) transport format, and for decoding from that format back into objects. This is a preview API.
+:::
+
+引入一个 API，用于将表示加密密钥、证书和证书吊销列表的对象编码为广泛使用的隐私增强型邮件 （PEM） 传输格式，并从该格式解码回对象。这是一个预览 API。
 
 ## JEP 502： 稳定值（预览）
 
@@ -54,7 +64,7 @@ Introduce an API for stable values, which are objects that hold immutable data. 
 + 灵活初始化：稳定值为我们提供了与final字段相同的初始化保证，同时保留了可变非final字段的灵活性。
 + 支持稳定列表：稳定值 API 还引入了对稳定列表的支持，这是一种特殊的稳定值，用于存储不可变的元素列表。
 
-<!-- @include ./stable_values_intro.md -->
+<!-- @include ./stable-values-intro.md -->
 
 ## JEP 503：移除 32 位 x86 端口
 
@@ -80,7 +90,7 @@ Simplify concurrent programming by introducing an API for structured concurrency
 Introduce scoped values, which enable a method to share immutable data both with its callees within a thread, and with child threads. Scoped values are easier to reason about than thread-local variables. They also have lower space and time costs, especially when used together with virtual threads (JEP 444) and structured concurrency (JEP 505).
 :::
 
-引入作用域值，使方法能够与线程中的被调用方以及子线程共享不可变数据。作用域值比线程局部变量更容易推理。它们还具有较低的空间和时间成本，特别是当与虚拟线程（JEP 444）和结构化并发（JEP 505）一起使用时。
+<!-- @include: ./scoped-values-guide-intro.md -->
 
 有一个小的更改：ScopedValue.orElse 方法不再接受 null 作为其参数。
 
@@ -92,7 +102,7 @@ Introduce scoped values, which enable a method to share immutable data both with
 Enhance pattern matching by allowing primitive types in all pattern contexts, and extend instanceof and switch to work with all primitive types. This is a preview language feature.
 :::
 
-通过允许在所有模式上下文中使用原始类型来增强模式匹配，并扩展 instanceof 和 switch 以使用所有原始类型。这是一个预览语言功能。
+<!-- @include:./primitive-types-in-patterns-instanceof-and-switch-intro.md -->
 
 [模式、instanceof 和 switch中的原始类型](./primitive-types-in-patterns-instanceof-and-switch.md)
 
@@ -205,7 +215,7 @@ Change compact object headers from an experimental feature to a product feature.
 
 ## JEP 520：JFR 方法时序和跟踪
 
-::: info JEP 520:	JFR Method Timing & Tracing
+::: info JEP 520: JFR Method Timing & Tracing
 Extend the JDK Flight Recorder (JFR) with facilities for method timing and tracing via bytecode instrumentation.
 :::
 
@@ -218,3 +228,6 @@ Change the generational mode of the Shenandoah garbage collector from an experim
 :::
 
 将 Shenandoah 垃圾收集器的分代模式从实验功能改为产品功能。
+
+## 参考资料
+[JDK 25](https://openjdk.org/projects/jdk/25/)
