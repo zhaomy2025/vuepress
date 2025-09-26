@@ -141,17 +141,21 @@ import { mdEnhancePlugin } from "vuepress-plugin-md-enhance";
 
 export default {
     plugins: [
-        mdEnhancePlugin({ 
-            chartjs: true, 
+        mdEnhancePlugin({
+            chartjs: true,
             echarts: true,
             flowchart: true,
             markmap: true,
             mermaid: true,
-            plantuml: true,            
+            plantuml: true,
         }),
     ],
 };
 ```
+
+::: warning
+按需启用，否则站点启动会很慢
+:::
 
 1. 在 Markdown 文件中使用Mermaid语法：
 ````markdown
