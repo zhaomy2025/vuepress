@@ -3,7 +3,7 @@
 [[toc]]
 
 ## 概述
-Java 23 于 2024 年 9 月发布，包含了多个新特性和改进。
+Java 23 于 2024 年 9 月发布，该版本提供12项新特性（含9项孵化/预览/实验功能）。
 
 ## 主要新特性
 
@@ -99,6 +99,9 @@ Introduce scoped values, which enable a method to share immutable data both with
 
 用于在线程内和跨线程共享不可变数据，旨在替代 `ThreadLocal`，特别是在虚拟线程场景下更高效、更安全。
 
+有一个变动：`ScopedValue.callWhere` 方法的操作参数类型现在改为一个新的函数式接口，这使得 Java 编译器能够推断是否可能抛出受检异常。基于这一改动，`ScopedValue.getWhere` 方法不再需要，现已被移除。
+
+
 ### JEP 482: 灵活的构造函数体（第二次预览）
 
 ::: info JEP 482: Flexible Constructor Bodies (Second Preview)
@@ -106,3 +109,6 @@ In constructors in the Java programming language, allow statements to appear bef
 :::
 
 <!-- @include:./flexible-constructor-bodies-intro.md -->
+
+## 参考资料
+[JDK 23](https://openjdk.org/projects/jdk/23/)
