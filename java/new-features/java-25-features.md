@@ -144,7 +144,7 @@ Enhance the Java programming language with the ability to succinctly import all 
 Evolve the Java programming language so that beginners can write their first programs without needing to understand language features designed for large programs. Far from using a separate dialect of the language, beginners can write streamlined declarations for single-class programs and then seamlessly expand their programs to use more advanced features as their skills grow. Experienced developers can likewise enjoy writing small programs succinctly, without the need for constructs intended for programming in the large.
 :::
 
-<!-- @include: ./jer-445-463-477-495-512-intro.md -->
+<!-- @include: ./jep-445-463-477-495-512-intro.md -->
 
 改动点：
 - 将简单的源文件重命名为紧凑的源文件

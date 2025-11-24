@@ -4,7 +4,7 @@
 
 ## 概述
 
-Java 24 于 2025 年 3 月发布，该版本提供24项新特性（含10项孵化/预览/实验功能）
+Java 24 于 2025 年 3 月发布，该版本提供24项新特性（含10项孵化/预览/实验功能）。
 
 ## JEP 404: 分代 Shenandoah（实验性）
 
@@ -181,7 +181,7 @@ Enhance the Java programming language with the ability to succinctly import all 
 Evolve the Java programming language so that beginners can write their first programs without needing to understand language features designed for large programs. Far from using a separate dialect of the language, beginners can write streamlined declarations for single-class programs and then seamlessly expand their programs to use more advanced features as their skills grow. Experienced developers can likewise enjoy writing small programs succinctly, without the need for constructs intended for programming in the large. This is a preview language feature.
 :::
 
-<!-- @include: ./jer-445-463-477-495-512-intro.md -->
+<!-- @include: ./jep-445-463-477-495-512-intro.md -->
 
 改动点：将**隐式声明的类和实例主方法**重命名为**简单源文件和实例主要方法**
 
