@@ -19,7 +19,7 @@
 ```java
 // Java 1.2-20：ThreadLocal的典型问题演示
 public class ThreadLocalProblems {
-  
+
   // 问题1：内存泄露风险
   private static final ThreadLocal<DatabaseConnection> connectionHolder =
       new ThreadLocal<>() {
@@ -28,10 +28,9 @@ public class ThreadLocalProblems {
               return new DatabaseConnection(); // 永远不会自动清理
           }
       };
-  
+
   // 问题2：可继承性问题
   private static final ThreadLocal<String> userContext = new InheritableThreadLocal<>();
-  
   public static void demonstrateProblems() {
       // 问题3：线程池中的值污染
       ExecutorService executor = Executors.newFixedThreadPool(10);
@@ -44,14 +43,13 @@ public class ThreadLocalProblems {
           System.out.println("Unexpected user: " + user);
       });
   }
-    
+
     // 问题4：复杂的多层上下文传递
     public static void complexContextChain() {
         try {
             userContext.set("user1");
             transactionContext.set("tx1");
             localeContext.set("en_US");
-            
             // 每层都需要手动清理
         } finally {
             userContext.remove();
@@ -63,13 +61,17 @@ public class ThreadLocalProblems {
 ```
 
 **ThreadLocal的致命缺陷**：
-1. **内存泄露**：线程池中的ThreadLocal值永远不会被GC
-2. **可继承性混乱**：子线程继承父线程值，导致意外状态
-3. **生命周期管理复杂**：需要显式清理，容易遗漏
-4. **不可变性问题**：值可以被任意修改，破坏线程安全
-5. **调试困难**：无法追踪值的来源和传播路径
-6. **性能开销**：ThreadLocalMap的哈希冲突和扩容成本
-7. **API设计缺陷**：缺乏结构化的作用域概念，导致滥用
+1. **内存泄露**：线程池中线程长期存活且被重用，ThreadLocal 值不及时清理导致堆积
+2. **生命周期管理复杂**：必须手动调用`remove()`显式清理，容易在异常分支中遗漏
+3. **线程重用导致的值污染**：线程重用时，前一个任务的 ThreadLocal 值会污染后一个任务
+4. **不可变性问题**：ThreadLocal 值可以被任意修改，破坏线程安全
+4. **组合性缺陷**：缺乏结构化的上下文组合机制，多维度上下文管理困难，代码复杂度高
+    - 多个独立的 ThreadLocal，缺乏关联性
+    - 设置时各自为政，没有统一管理
+    - 清理时需要分别处理，容易遗漏
+5. **数据流不透明**：调用链路中隐式传递数据，无法从方法签名看出依赖关系
+6. **状态管理混乱**：值可以被任意修改，缺乏变更控制和追踪机制
+6. **设计缺陷**：缺乏明确的生命周期边界概念，被当作"全局变量"使用，破坏代码可测试性
 
 ### 作用域值时代：结构化上下文的诞生
 
