@@ -13,3 +13,7 @@ tags:
 
 # GitHub
 [[toc]]
+## GitHub 加速
+```
+git clone https://gitclone.com/github.com/
+```
