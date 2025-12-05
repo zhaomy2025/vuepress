@@ -35,7 +35,7 @@ export default defineUserConfig({
       },
       {
         text: '算法',
-        link: '/posts/algorithm/',
+        link: '/algorithm/',
       },
       {
         text: 'Linux',
@@ -57,6 +57,8 @@ export default defineUserConfig({
     sidebar: {
       '/resource/': [
         '/resource/',
+        '/resource/windows-tools',
+        '/resource/vscode-plugins',
         '/resource/book',
         '/resource/github'
       ],
@@ -98,15 +100,6 @@ export default defineUserConfig({
                 'hutool'
             ]
           },
-          
-          {
-            text: 'ORM',
-            prefix: 'orm/',
-            children:[
-              'mybatis',
-              'mybatis-annotation',
-            ]
-          },
           {
             text: '模块',
             prefix: 'module/',
@@ -114,6 +107,14 @@ export default defineUserConfig({
               'mail',
               'java_mail',
               'java_mail_sender'
+            ]
+          },
+          {
+            text: 'ORM',
+            prefix: 'orm/',
+            children:[
+              'mybatis',
+              'mybatis-annotation',
             ]
           },
           {
@@ -193,8 +194,8 @@ export default defineUserConfig({
           ],
         },
       ],
-      '/posts/algorithm/': [
-        '/posts/algorithm/',
+      '/algorithm/': [
+        '/algorithm/',
         {
           text:'算法思想',
           children: [
@@ -206,6 +207,16 @@ export default defineUserConfig({
           link: 'domain/',
           prefix: 'domain/',
           children: [
+            {
+              link: 'security/',
+              prefix: 'security/',
+              children: [
+                'hash-function-integrity',
+                'symmetric-encryption',
+                'asymmetric-encryption-pki',
+                'digital-signature',
+              ],
+            },
             {
               text: '分布式算法',
               link: 'distribute/'
