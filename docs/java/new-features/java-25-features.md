@@ -27,7 +27,7 @@ Java 25 LTS 版本已按计划于2025年9月16日正式发布，该版本提供1
   - JEP 492（Java 24）：灵活的构造函数体（第三次预览）
 + JEP 514：超前命令行
 + JEP 515：超前方法剖析
-+ JEP 518：JFR 合作采样
++ JEP 518：JFR 协作式采样
 + JEP 519：紧凑对象标头
   - JEP 450（Java 24）：紧凑对象标头（实验性）
 + JEP 520：JFR 方法时序和跟踪
@@ -209,7 +209,7 @@ Improve the stability of the JDK Flight Recorder (JFR) when it asynchronously sa
 Change compact object headers from an experimental feature to a product feature.
 :::
 
-将紧凑对象头从实验功能改为产品功能。
+将紧凑对象头从实验功能改为产品功能，详情请查看 [紧凑对象头详解](./compact-object-headers.md)。
 
 <!-- @include:compact-object-headers-intro.md -->
 

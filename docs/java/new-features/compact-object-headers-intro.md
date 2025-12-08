@@ -84,7 +84,8 @@ Java 对象在堆中的存储包含**对象头**和**实例数据**。对象头�
 Java 24 中，紧凑对象头是实验性功能，需要特定 JVM 参数启用，Java 25 成为正式功能，无需手动启动。
 
 ```bash
--XX:+UnlockExperimentalVMOptions -XX:+UseCompactObjectHeaders
+-XX:+UnlockExperimentalVMOptions
+-XX:+UseCompactObjectHeaders
 ```
 
 ### 适用场景
