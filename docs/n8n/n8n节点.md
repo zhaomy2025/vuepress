@@ -42,16 +42,6 @@
 
 ### Trigger Manually (n8n-nodes-base.manualTrigger)
 通过点击按钮手动启动工作流，主要用于**测试和调试**。
-```
-{
-  "parameters": {},
-  "type": "n8n-nodes-base.manualTrigger",
-  "typeVersion": 1,
-  "position": [0, 0],
-  "id": "89098538-fe2b-4245-984c-4da74e0f1f7c",
-  "name": "When clicking ‘Execute workflow’"
-}
-```
 
 ### On app event
 
@@ -142,6 +132,7 @@
 - 输出存入指定 JSON 字段（默认 data）
 
 ### Aggregate(n8n-nodes-base.aggregate)
+
 - 用于将多个数据项合并为一个，支持合并数组、对象等
 - 可用于批量处理数据，如合并多个 API 响应
 
@@ -193,7 +184,7 @@
 
 ### 条件断言（使用 If 节点）
 
-虽然 `If` 节点归类于「流程控制与循环」，但在测试中常用于实现布尔断言（如响应码是否为 200）。详细用法参见「流程控制与循环」章节。
+ `If` 节点在测试中常用于实现布尔断言（如响应码是否为 200）。详细用法参见「流程控制与循环」章节。
 
 ## 状态持久化
 
@@ -206,9 +197,11 @@
 - 建议：使用绝对路径，Docker 环境需挂载卷
 
 ### Google Sheets
+
 将结果写入Google在线表格，便于团队协作查看。
 
 ### Airtable
+
 将结果写入在线表格，便于团队协作查看。
 
 ### Variable Storage（社区节点）
