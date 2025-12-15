@@ -1,5 +1,5 @@
 ---
-title: Zookeeper使用——命令行
+title: Zookeeper命令行
 date: 2025-07-14T01:16:53.994Z
 category:
   - arch

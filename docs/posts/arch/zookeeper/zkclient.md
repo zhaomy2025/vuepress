@@ -1,5 +1,5 @@
 ---
-title: Zookeeper使用——ZkClient
+title: Zookeeper客户端——ZkClient
 date: 2025-07-14T02:11:27.949Z
 category:
   - arch

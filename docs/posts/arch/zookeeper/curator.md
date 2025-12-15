@@ -1,5 +1,5 @@
 ---
-title: Zookeeper使用——Curator
+title: Zookeeper客户端——Curator
 date: 2025-07-14T02:15:31.665Z
 category:
   - arch

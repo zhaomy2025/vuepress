@@ -23,7 +23,7 @@ Zookeeper主要用于以下场景：
 - 负载均衡
 - 集群管理
   + **Master选举**
-  + 节点监听 
+  + 节点监听
 - 分布式协调与同步
   + 屏障<Tip>DistributedBarrier</Tip>
   + **分布式锁**<Tip>InterProcessMutex</Tip>
