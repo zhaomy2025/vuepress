@@ -27,7 +27,7 @@ export default defineUserConfig({
       },
       {
         text: '架构',
-        link: 'posts/arch/'
+        link: '/arch/'
       },
       {
         text: '数据库',
@@ -81,6 +81,22 @@ export default defineUserConfig({
             prefix: 'intermediate/',
             children: [
                 'multithreading',
+            ]
+          },
+          {
+            text: 'Java 高级',
+            prefix: 'advanced/',
+            children: [
+              {
+                text: 'Java 垃圾回收器详解',
+                link: 'garbage-collection/',
+                prefix: 'garbage-collection/',
+                children: [
+                    'g1-gc',
+                    'shenandoah-gc',
+                    'zgc'
+                ]
+              },
             ]
           },
           {
@@ -162,7 +178,7 @@ export default defineUserConfig({
             collapsible: true,
           }
       ],
-      '/posts/arch/':[
+      '/arch/':[
         {
           text:'ZooKeeper',
           link: 'zookeeper/',
@@ -208,13 +224,18 @@ export default defineUserConfig({
           prefix: 'domain/',
           children: [
             {
+              text:'安全算法',
               link: 'security/',
               prefix: 'security/',
               children: [
                 'hash-function-integrity',
                 'symmetric-encryption',
+                'message-authentication-code',
                 'asymmetric-encryption-pki',
                 'digital-signature',
+                'modern-crypto-protocols',
+                'post-quantum-cryptography',
+                'crypto-algorithm-security-analysis',
               ],
             },
             {
