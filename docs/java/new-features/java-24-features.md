@@ -53,6 +53,7 @@ Introduce an API for Key Derivation Functions (KDFs), which are cryptographic al
 引入一个用于密钥派生函数的预览版API。密钥派生函数是一种可从密钥及其他数据中推导出更多密钥的密码学算法。
 
 **目标**：
+
 - 使应用程序能够使用KDF算法，例如基于HMAC的提取-扩展密钥派生函数（HKDF，RFC 5869）和Argon2（RFC 9106）。
 - 支持在密钥封装机制（KEM，JEP 452）实现（如ML-KEM）、高层协议（如TLS 1.3中的混合密钥交换）以及密码方案（如混合公钥加密HPKE，RFC 9180）中使用KDF。
 - 允许安全提供商使用Java代码或原生代码来实现KDF算法。
@@ -86,8 +87,8 @@ Provide a standard API for parsing, generating, and transforming Java class file
 
 自第二个预览版以来的更改包括重命名枚举值、删除某些字段、添加方法和方法重载、重命名方法以及删除被认为不必要的接口和方法。
 
-
 ## JEP 485: 流收集器
+
 ::: info JEP 485: Stream Gatherers
 Enhance the Stream API to support custom intermediate operations. This will allow stream pipelines to transform data in ways that are not easily achievable with the existing built-in intermediate operations.
 :::
@@ -97,14 +98,15 @@ Enhance the Stream API to support custom intermediate operations. This will allo
 [流收集器](./stream-gatherers-guide.md)
 
 ## JEP 486: 永久禁用安全管理器
+
 ::: info JEP 486: Permanently Disable the Security Manager
 The Security Manager has not been the primary means of securing client-side Java code for many years, it has rarely been used to secure server-side code, and it is costly to maintain. We therefore deprecated it for removal in Java 17 via JEP 411 (2021). As the next step toward removing the Security Manager, we will revise the Java Platform specification so that developers cannot enable it and other Platform classes do not refer to it. This change will have no impact on the vast majority of applications, libraries, and tools. We will remove the Security Manager API in a future release.
 :::
 
 安全管理器早已不是保护客户端Java代码的主要手段，在服务端代码中也鲜有应用，且维护成本高昂。因此，该机制已于2021年通过JEP 411在Java 17中被标记为弃用并计划移除。作为移除工作的下一步，Java平台规范将进行修订，使开发者无法启用该功能，并确保其他平台类不再引用它。此项变更对绝大多数应用程序、库和工具不会产生任何影响。Security Manager API将在未来版本中被彻底移除。
 
-
 ## JEP 487: 作用域值（第四次预览）
+
 ::: info JEP 487: Scoped Values (Fourth Preview)
 Introduce scoped values, which enable a method to share immutable data both with its callees within a thread, and with child threads. Scoped values are easier to reason about than thread-local variables. They also have lower space and time costs, especially when used together with virtual threads (JEP 444) and structured concurrency (JEP 480). This is a preview API.
 :::
@@ -116,6 +118,7 @@ Introduce scoped values, which enable a method to share immutable data both with
 有一个变动：移除了 `ScopedValue` 类中的 `callWhere` 和 `runWhere` 方法，使 API 保持完全流畅的链式调用特性。现在使用一个或多个绑定作用域值的唯一方式是通过 `ScopedValue.Carrier.call` 和 `ScopedValue.Carrier.run` 方法。
 
 ## JEP 488: 模式、instanceof 和 switch中的原始类型（第二次预览）
+
 ::: info JEP 488: Primitive Types in Patterns, instanceof, and switch (Second Preview)
 Enhance pattern matching by allowing primitive types in all pattern contexts, and extend instanceof and switch to work with all primitive types. This is a preview language feature.
 :::
@@ -125,6 +128,7 @@ Enhance pattern matching by allowing primitive types in all pattern contexts, an
 [模式、instanceof 和 switch中的原始类型](./primitive-types-in-patterns-instanceof-and-switch.md)
 
 ## JEP 489: 向量 API（第九个孵化器）
+
 ::: info JEP 489: Vector API (Ninth Incubator)
 Introduce an API to express vector computations that reliably compile at runtime to optimal vector instructions on supported CPU architectures, thus achieving performance superior to equivalent scalar computations.
 :::
@@ -171,6 +175,7 @@ Enhance the Java programming language with the ability to succinctly import all 
 <!-- @include: ./module-Import-declarations-intro.md -->
 
 之前在 JDK 23 中预览过，本次改动点：
+
 - 解除任何模块都不能声明对 java.base 模块的传递依赖的限制
 - 修改 java.se 模块的声明
 - 允许 type-import-on-demand 声明遮蔽模块导入声明
@@ -228,4 +233,5 @@ Deprecate the 32-bit x86 port, with the intent to remove it in a future release.
 弃用 32 位 x86 端口，并计划在未来版本中将其移除。此举将导致目前 JDK 中唯一剩余的 32 位 x86 端口——Linux 32 位 x86 端口被弃用，同时也将实质上弃用所有下游衍生的 32 位 x86 移植版本。在该端口被移除后，与架构无关的 Zero 移植版本将成为在 32 位 x86 处理器上运行 Java 程序的唯一方式。
 
 ## 参考资料
+
 [JDK 24](https://openjdk.org/projects/jdk/24/)
