@@ -68,7 +68,7 @@ public class ThreadPoolLimitation {
 + **JEP 428** (Java 19)：第一次孵化
   - 首次引入`StructuredTaskScope`API，支持`ShutdownOnFailure`和`ShutdownOnSuccess`策略
 + **JEP 437** (Java 20)：第二次孵化
-  - 支持作用域值，任务作用域中创建的线程可继承作用域值
+  - 增强了与 Scoped Values 的互操作性，使得在结构化作用域中创建的线程自动继承父线程的作用域值。
 
 **Java 21-25：预览版**
 
