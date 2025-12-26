@@ -8,7 +8,6 @@
 #### final 字段
 
 ```
-
 class OrderController {
 
     private final Logger logger = Logger.create(OrderController.class);
@@ -20,7 +19,6 @@ class OrderController {
     }
 
 }
-
 ```
 
 由于 logger 是 OrderController 类的 final 字段，因此在创建 OrderController 实例时，必须立刻初始化该字段。这意味着创建新的 OrderController 可能会很慢，毕竟，获取日志记录器有时需要进行昂贵的操作，如读取和解析配置数据，或准备记录日志事件的存储空间。这种初始化工作不仅不利于应用程序的启动，而且可能没有必要。毕竟，有些组件可能永远都不需要记录事件，那么为什么要在前面做这些昂贵的工作呢？
