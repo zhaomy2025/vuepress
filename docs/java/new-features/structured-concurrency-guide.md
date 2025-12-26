@@ -28,9 +28,10 @@
   - 跨线程上下文传递困难
     * MDC（日志链路 ID）、SecurityContext 等 ThreadLocal 数据无法自动跟随线程切换，需要手动复制
 
-**Java 1.0-4时代：原始线程管理**
+**Java 1.0-1.4时代：原始线程管理**
+
 ```java
-// Java 1.0-4：手动线程管理（问题重重）
+// Java 1.0-1.4：手动线程管理（问题重重）
 public class ManualThreadDemo {
     public static void main(String[] args) {
         Thread t1 = new Thread(() -> fetchUserData());
@@ -41,8 +42,8 @@ public class ManualThreadDemo {
 }
 ```
 
-
 **Java 5-18时代：线程池的局限性**
+
 ```java
 // Java 5-18：ExecutorService的局限性
 public class ThreadPoolLimitation {
@@ -54,6 +55,7 @@ public class ThreadPoolLimitation {
     }
 }
 ```
+
 + 线程泄露
   - 如果findUser() 抛出异常，那么handle() 在调用user.get() 时也会抛出异常，但fetchOrder() 会继续在自己的线程中运行
   - 如果执行handle() 的线程被中断，中断不会传播到子任务。findUser() 和fetchOrder() 线程都会泄漏，即使handle() 失败后也会继续运行。
@@ -72,10 +74,10 @@ public class ThreadPoolLimitation {
 
 + **JEP 453**（Java21）：结构化并发预览特性
   - `fork()`方法返回`Subtask`而非`Future`，提供更精细的任务状态查询
-+ **JEP 462**（Java22）: 结构化并发（第二次预览）
-+ **JEP 480**（Java23）: 结构化并发（第三次预览）
-+ **JEP 499**（Java24）: 结构化并发（第四次预览）
-+ **JEP 505**（Java25）: 结构化并发（第五次预览）
++ **JEP 462**（Java22）：结构化并发（第二次预览）
++ **JEP 480**（Java23）：结构化并发（第三次预览）
++ **JEP 499**（Java24）：结构化并发（第四次预览）
++ **JEP 505**（Java25）：结构化并发（第五次预览）
 
 ## 核心特性解析
 
@@ -86,13 +88,13 @@ public class ThreadPoolLimitation {
 1. 创建作用域，并指定关闭策略
 2. 调用`fork()`在作用域中创建子任务
 3. 调用`shutdown()`取消所有未完成任务
-  - 当某个子任务遇到无法处理的错误时，调用`shutdown()`主动请求取消
-  - 父任务也可以调用`shutdown()`主动取消
-  - `ShutdownOnFailure`策略会在任一子任务失败时自动调用`shutdown()`
+  1. 当某个子任务遇到无法处理的错误时，调用`shutdown()`主动请求取消
+  2. 父任务也可以调用`shutdown()`主动取消
+  3. `ShutdownOnFailure`策略会在任一子任务失败时自动调用`shutdown()`
 4. 调用`join()`或`joinUntil()`等待所有子任务完成或取消
 5. 处理异常或获取结果
-   - 调用`throwIfFailed()`抛出第一个失败任务的异常
-   - 调用`resultNow()`获取已完成任务的结果（如果有）
+  1. 调用`throwIfFailed()`抛出第一个失败任务的异常
+  2. 调用`resultNow()`获取已完成任务的结果（如果有）
 6. 通过try-with-resources 隐式关闭作用域
 
 #### 基本使用模式
@@ -117,11 +119,10 @@ public class StructuredConcurrencyDemo {
 ```
 
 #### 作用域关闭策略
+
 有两种关闭策略：
 1. 失败时关闭策略：只要有一个任务失败，就关闭所有任务
-2. 成功时关闭策略：只要有一个任务成功，就关闭所有任务
 
-1. 失败时关闭策略
 ```java
 public class ShutdownOnFailureDemo {
     public static String fetchCriticalData() throws Exception {
@@ -135,8 +136,10 @@ public class ShutdownOnFailureDemo {
     }
 }
 ```
-2. 成功时关闭策略
-```
+
+2. 成功时关闭策略：只要有一个任务成功，就关闭所有任务
+
+```java
 public class ShutdownOnSuccessDemo {
   public static String fetchFirstAvailable() throws Exception {
     try (var scope = new StructuredTaskScope.ShutdownOnSuccess<String>()) {
@@ -152,9 +155,11 @@ public class ShutdownOnSuccessDemo {
 ```
 
 ### Subtask(Java21)
+
 从JEP 453开始，StructuredTaskScope::fork(...)方法返回一个Subtask，而不是Future。 Subtask提供了比Future更丰富的方法来查询任务状态。
 
 #### 核心方法
+
 1. `get()`：获取任务结果，如果任务未完成，则阻塞直到完成；如果任务失败或取消，则抛出异常。与Future.get()类似
 2. `state()`：获取任务状态，返回Subtask.State枚举值，比 Future.isDone() 提供更精细的信息。
   - UNAVAILABLE：任务未开始或仍在运行
@@ -170,9 +175,7 @@ public class ShutdownOnSuccessDemo {
 
 ```java
 Future<String> successFuture = executor.submit(() -> "Success");
-Future<String> failureFuture = executor.submit(() -> { 
-    throw new RuntimeException("Boom!"); 
-  });
+Future<String> failureFuture = executor.submit(() -> throw new RuntimeException("Boom!"));
 
 // 状态查询模糊
 if (successFuture.isDone()) {
@@ -193,9 +196,7 @@ try {
 ```java
 try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
   Subtask<String> successSubtask = scope.fork(() -> "Success");
-  Subtask<String> failureSubtask = scope.fork(() -> {
-    throw new RuntimeException("Boom!");
-    });
+  Subtask<String> failureSubtask = scope.fork(() -> throw new RuntimeException("Boom!"));
 
   scope.join();
 
@@ -297,12 +298,10 @@ public class StructuredAggregationService {
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
             Subtask<User> userTask = scope.fork(() -> userService.getUser(userId));
             Subtask<List<Order>> ordersTask = scope.fork(() -> orderService.getOrders(userId));
-            Subtask<List<Notification>> notifsTask = scope.fork(() -> notificationService.getNotifications(userId));
-            
+            Subtask<List<Notification>> notificationsTask = scope.fork(() -> notificationService.getNotifications(userId));
             scope.join();
             scope.throwIfFailed();
-            
-            return new UserDashboard(userTask.get(), ordersTask.get(), notifsTask.get());
+            return new UserDashboard(userTask.get(), ordersTask.get(), notificationsTask.get());
         }
     }
 }
@@ -339,16 +338,16 @@ public class DataProcessingPipeline {
 
 ```java
 public class FanOutFanInPattern {
-    
+
     public static <T, R> List<R> parallelMap(Collection<T> items, Function<T, R> mapper) throws Exception {
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
             List<Subtask<R>> tasks = items.stream()
                 .map(item -> scope.fork(() -> mapper.apply(item)))
                 .toList();
-            
+
             scope.join();
             scope.throwIfFailed();
-            
+
             return tasks.stream()
                 .map(Subtask::get)
                 .toList();
@@ -361,17 +360,17 @@ public class FanOutFanInPattern {
 
 ```java
 public class TimeoutHandlingPattern {
-    
+
     public static String fetchWithTimeout(Duration timeout) throws Exception {
         try (var scope = new StructuredTaskScope.ShutdownOnFailure()) {
             Subtask<String> primary = scope.fork(() -> fetchFromPrimary());
             Subtask<String> fallback = scope.fork(() -> fetchFromFallback());
-            
+
             boolean completed = scope.joinUntil(Instant.now().plus(timeout));
             if (!completed) {
                 throw new TimeoutException("操作超时");
             }
-            
+
             scope.throwIfFailed();
             return primary.state() == Subtask.State.SUCCESS ? primary.get() : fallback.get();
         }
