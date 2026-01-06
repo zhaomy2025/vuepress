@@ -17,7 +17,7 @@ Java 25 LTS 版本已按计划于2025年9月16日正式发布，该版本提供1
 + JEP 510：密钥派生函数 API
 + JEP 511：模块导入声明由 JEP 476（Java 23） 提议预览，经过 JEP 494（Java 24）再次预览，最终在 JEP 511（Java 25）中正式引入。
 + JEP 512：压缩源文件和实例主方法
-  - JEP 445（Java 21）: 未命名类和实例主方法（预览)
+  - JEP 445（Java 21）: 未命名类和实例主方法（预览）
   - JEP 463（Java 22）: 隐式声明的类和实例主方法（第二次预览）
   - JEP 477（Java 23）: 隐式声明的类和实例主方法（第三次预览）
   - JEP 495（Java 24）：简单源文件和实例主方法（第四次预览）
@@ -52,7 +52,7 @@ Introduce an API for encoding objects that represent cryptographic keys, certifi
 
 引入一个 API，用于将表示加密密钥、证书和证书吊销列表的对象编码为广泛使用的隐私增强型邮件 （PEM） 传输格式，并从该格式解码回对象。这是一个预览 API。
 
-## JEP 502： 稳定值（预览）
+## JEP 502：稳定值（预览）
 
 ::: info JEP 502: Stable Values (Preview)
 Introduce an API for stable values, which are objects that hold immutable data. Stable values are treated as constants by the JVM, enabling the same performance optimizations that are enabled by declaring a field final. Compared to final fields, however, stable values offer greater flexibility as to the timing of their initialization. This is a preview API.
@@ -114,7 +114,7 @@ Introduce an API to express vector computations that reliably compile at runtime
 
 <!-- @include:./vector-api-intro.md -->
 
-## JEP 509： JEP 509：JFR CPU 时间分析（实验性）
+## JEP 509：JFR CPU 时间分析（实验性）
 
 ::: info JEP 509: JFR CPU-Time Profiling (Experimental)
 Enhance the JDK Flight Recorder (JFR) to capture more accurate CPU-time profiling information on Linux. This is an experimental feature.
