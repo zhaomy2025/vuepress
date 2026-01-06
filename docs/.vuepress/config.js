@@ -69,7 +69,16 @@ export default defineUserConfig({
             link: 'new-features/',
             prefix: 'new-features/',
             children: [
-                'java-25-features',
+                {
+                  text: 'Java 25 新特性',
+                  link: 'java-25-features',
+                  children: [
+                      'stable-values',
+                      'structured-concurrency',
+                      'scoped-values',
+                      'primitive-types-in-patterns-instanceof-and-switch',
+                  ]
+                },
                 'java-24-features',
                 'java-23-features',
                 'java-22-features'
@@ -92,9 +101,25 @@ export default defineUserConfig({
                 link: 'garbage-collection/',
                 prefix: 'garbage-collection/',
                 children: [
-                    'g1-gc',
+                    'g1',
                     'shenandoah-gc',
                     'zgc'
+                ]
+              },
+              {
+                text: 'Java 诊断与监控工具',
+                link: 'diagnostic-tools/',
+                prefix: 'diagnostic-tools/',
+                children: [
+                  'diagnostic-jcmd',
+                  'diagnostic-jps',
+                  'diagnostic-jinfo',
+                  'diagnostic-jstat',
+                  'diagnostic-jmap',
+                  'memory-tools',
+                  'profiling-jfr',
+                  'profiling-jmc',
+                  'profiling-tools'
                 ]
               },
             ]
@@ -179,6 +204,14 @@ export default defineUserConfig({
           }
       ],
       '/arch/':[
+        {
+          text: '架构',
+          link: '/arch/',
+        },
+        {
+          text:'分布式系统',
+          link: 'distribute'
+        },
         {
           text:'ZooKeeper',
           link: 'zookeeper/',
