@@ -18,8 +18,10 @@
 | 报告生成   | Convert to File (CSV/JSON/XLSX), Google Sheets, Airtable    |
 | 调试与日志 | Debug, Console, Sticky Note  |
 
-> 💡 说明：
-> **数据库节点**包括官方（PostgreSQL/MySQL/SQLite/MSSQL/CockroachDB）和社区（Oracle/MongoDB/Elasticsearch/DynamoDB）
+> **数据库节点**包括官方（PostgreSQL/MySQL/SQLite/MSSQL/CockroachDB/Oracle Database）和社区（Oracle/MongoDB/Elasticsearch/DynamoDB）
+> Oracle 同时出现在两列是因为：n8n 较新版本已内置官方 Oracle Database 节点（`n8n-nodes-base.oracledb`），但本项目使用 **v1.119.1**，该版本可能早于官方内置节点的发布，因此实际依赖社区节点。
+> 社区节点安装后 type 会注册到 `n8n-nodes-base` 命名空间下（如 Oracle 社区节点为 `n8n-nodes-base.oracleDatabase`），但凭证类型与官方节点不同，**不可混用**。
+> ⚠️ **Oracle 特别说明**：社区节点（`@rempel/n8n-nodes-oracle`）与官方内置节点（`n8n-nodes-base.oracledb`）是两个不同的节点，详见下文「数据库节点」章节。
 > **文件读写操作(Read File/Write File)**均基于`n8n-nodes-base.readWriteFile`节点，通过操作模式切换读/写功能
 
 ## 文件与数据库操作的环境约束
@@ -33,8 +35,22 @@
 - 🐳 **Docker 用户**：需通过 `-v` 挂载主机目录到容器内，并使用容器内路径
 
 ### 数据库节点
-- 官方节点（PostgreSQL/MySQL 等）：内置支持
-- 社区节点（Oracle/MongoDB 等）：需手动安装对应 npm 包（如 `@n8n/n8n-nodes-oracle`）
+- 官方节点（PostgreSQL/MySQL/SQLite/MSSQL/CockroachDB/Oracle Database）：内置支持
+- 社区节点（Oracle/MongoDB/Elasticsearch/DynamoDB）：需手动安装对应 npm 包
+
+> **Oracle 节点选择指南**：
+>
+> | 属性 | 社区节点 | 官方内置节点 |
+> |------|---------|-------------|
+> | **npm 包** | `@rempel/n8n-nodes-oracle` | 随 n8n 内置，无需安装 |
+> | **节点 type** | `n8n-nodes-base.oracleDatabase` | `n8n-nodes-base.oracledb` |
+> | **凭证类型** | `oracleDBApi` | `Oracle Database credentials` |
+> | **operation** | `execute` | `executeSql` / `select` / `insert` 等 |
+> | **驱动程序** | 不明 | node-oracledb（Oracle 官方） |
+> | **系统要求** | 未明确标注 | Oracle Database 19c+ |
+> | **引入版本** | 社区维护 | 约 n8n 1.x 晚期或 2.0+ |
+>
+> ⚠️ **当前环境注意**：本项目使用 n8n **v1.119.1**，该版本可能**早于**官方内置 Oracle 节点的发布时间，因此需要依赖社区节点 `@rempel/n8n-nodes-oracle`。两者 type 名称和凭证类型均不同，**不可混用**。
 
 > ⚠️ 忽略上述约束将导致节点执行失败或静默跳过。
 
@@ -99,9 +115,12 @@
 
 提取 PDF 中的文本或图像内容，用于文档类测试验证。
 
-###  Oracle SQL(社区节点)
+### Oracle SQL（社区节点 n8n-nodes-base.oracleDatabase）
 从 Oracle 数据库读取预置测试数据（如用户账号、产品列表）。
-- 需提前安装 @n8n/n8n-nodes-oracle
+- **npm 包**：`@rempel/n8n-nodes-oracle`（⚠️ 不是 `@n8n/n8n-nodes-oracle`，后者不存在）
+- **凭证类型**：`oracleDBApi`
+- **operation**：`execute`
+- **参数**：`sqlQuery`、`options`
 - 示例查询：SELECT * FROM test_users WHERE env = 'staging'
 ✅ 其他数据库（MySQL/PostgreSQL 等）同理，归入本维度当且仅当用于准备测试输入。
 
@@ -208,9 +227,9 @@
 
 跨工作流持久化变量（如测试会话 ID）。
 
-### Oracle SQL（社区节点）
+### Oracle SQL（社区节点 n8n-nodes-base.oracleDatabase）
 
-将测试结果写入数据库审计表（如 test_run_log）。
+将测试结果写入数据库审计表（如 test_run_log）。节点详情同上「数据准备」章节中的 Oracle SQL 说明。
 
 ## 调用被测系统
 
