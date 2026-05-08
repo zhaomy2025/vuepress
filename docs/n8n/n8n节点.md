@@ -75,6 +75,74 @@
 提供简易表单界面供用户提交测试参数。
 - 支持上传附件，可代替Read File节点，无需配置文件路径。
 
+**formFields.values 中每个字段的通用属性**：
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| `fieldLabel` | string | 字段标签/名称，提交后作为 `$json` 的 key |
+| `fieldType` | string | 字段类型（见下表） |
+| `requiredField` | boolean | 是否必填 |
+| `placeholder` | string | 占位文本（text 类型） |
+| `acceptFileTypes` | string | 接受的文件类型（file 类型，如 `.csv`） |
+
+**fieldType 可选值及特有配置**：
+
+| fieldType | 用途 | 特有配置字段 | 说明 |
+|-----------|------|-------------|------|
+| `text` | 单行文本输入 | `placeholder` | — |
+| `textarea` | 多行文本 | `placeholder` | — |
+| `dropdown` | 下拉选择框 | **`fieldOptions`** | ⚠️ 见下方详解 |
+| `checkboxes` | 复选框 | **`fieldOptions`** | 同 dropdown 结构 |
+| `radioButtons` | 单选按钮组 | **`fieldOptions`** | 同 dropdown 结构 |
+| `file` | 文件上传 | `acceptFileTypes` | 二进制数据在 `$binary` 中 |
+
+> ⚠️ **dropdown / checkboxes / radioButtons 的 fieldOptions 格式（v1.119.1 实测验证）**：
+>
+> ```json
+> "fieldOptions": {
+>   "values": [
+>     { "option": "显示文本1" },
+>     { "option": "显示文本2" }
+>   ]
+> }
+> ```
+>
+> **关键点**：
+> - 字段名是 **`fieldOptions`**（不是 `options`、不是 `dropdownOptions`）
+> - 类型是 **`fixedCollection`**，必须嵌套 `values` 数组
+> - 每个选项只有 **`option`** 字段（字符串），**没有独立的 value 字段**
+> - 显示值 = 提交值（Form 提交时 `$json.fieldLabel` 就是选中的 option 字符串）
+>
+> ❌ 以下写法**全部错误**（会导致下拉框无选项或选项显示异常）：
+> - `"options": [{ "option": "a", "value": "b" }]` —— 不存在 value 字段
+> - `"dropdownOptions": { "values": [...] }` —— 字段名错误
+>
+> ✅ 正确示例——环境下拉框：
+> ```json
+> {
+>   "fieldLabel": "environment",
+>   "fieldType": "dropdown",
+>   "requiredField": true,
+>   "fieldOptions": {
+>     "values": [
+>       { "option": "测试" },
+>       { "option": "本地" },
+>       { "option": "UAT" }
+>     ]
+>   }
+> }
+> ```
+>
+> 后续 Code 节点中用中文字符串做 key 映射：
+> ```javascript
+> const env = $input.item.json.environment; // 值为 "测试" 或 "本地" 或 "UAT"
+> const envMap = {
+>   '测试': 'http://10.189.66.145:8080',
+>   '本地': 'http://localhost:8081',
+>   'UAT': 'http://10.189.66.97:8080'
+> };
+> ```
+
 ### When executed by another workflow (n8n-nodes-base.executeWorkflowTrigger)
 
 被其他工作流调用时触发。
