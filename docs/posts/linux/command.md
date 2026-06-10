@@ -84,8 +84,17 @@ zcat zip_file | grep "search_string" > target_file
 
 ```bash
 zgrep  "search_str" zip_file
+
 # 只显示文件名
-zgrep -l "search_str" zip_file
-# -c 统计匹配的行数，-n 显示匹配的行号
-zgrep -c -n "search_str" zip_file > target_file
+zgrep -l "search_str" zip_file > a.log
+
+# -c 统计匹配的行数
+zgrep -c "search_str" zip_file > a.log
+
+# -H 显示文件名，-n 显示匹配的行号
+zgrep -H -n "异常数据订阅发邮件" zip_file
+
+# 同时查询日志文件和压缩文件
+# ; 不管前一个任务是否执行成功，都会执行下一条命令
+grep -H -n "search_str" log_file ; zgrep -H -n "search_str" zip_file
 ```
