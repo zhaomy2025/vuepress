@@ -111,6 +111,6 @@ if ($versionNotes.Count -eq 0) {
 }
 
 Write-Host "`nUsage:"
-Write-Host "1. Add/update note: nvml note version notes"
-Write-Host "2. Remove note: nvml note remove version"
-Write-Host "3. Run directly to show list: nvml"
+Write-Host "1. Add/update note: nvm-list-with-notes.ps1 note version notes"
+Write-Host "2. Remove note: nvm-list-with-notes.ps1 note remove version"
+Write-Host "3. Run directly to show list: nvm-list-with-notes.ps1"
