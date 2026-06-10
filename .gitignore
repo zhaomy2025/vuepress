@@ -48,3 +48,7 @@ tmp
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+todo/*
+docs/ai/code/*
+docs/ai/prompt/*
