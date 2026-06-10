@@ -35,8 +35,8 @@
 
 这是一个轻量级的开源 MCP ，可以帮助你在 Windows 操作系统和 AI 智能体之间架起桥梁。
 
-#### [Word MCP](https://github.com/GongRzhe/Office-Word-MCP-Server)
-Office Word MCP 是让 AI 助手支持处理 Word 文档能力的开源神器。
+#### [Office Word MCP Server](https://github.com/GongRzhe/Office-Word-MCP-Server)
+Office Word MCP Server 是让 AI 助手支持处理 Word 文档能力的开源神器。
 
 #### [Excel MCP](https://github.com/haris-musa/excel-mcp-server)
 Excel MCP 服务能让 AI Agent 操纵和读取 Excel 文件。不需要在电脑上安装微软的 Excel 软件，也能让 AI 创建、读取和修改 Excel。

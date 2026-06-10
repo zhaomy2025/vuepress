@@ -32,6 +32,9 @@ tag:
 + [Gitee](https://gitee.com/)
 + [CODING 腾讯云代码托管](https://coding.net/)
 
+## 软件下载/GitHub加速
++ [清华大学开源软件镜像站](https://mirrors.tuna.tsinghua.edu.cn/github-release/) 常见项目
+
 ## 后端开发
 
 + [Spring Boot](https://spring.io/projects/spring-boot)
@@ -105,6 +108,13 @@ tag:
   准确度还可以，有免费额度
 + [沉浸式翻译](https://immersivetranslate.cn/)
   准确度不如会译对照式翻译
+
+### 视频加速插件
+
++ [Global Speed]()
+
+### 广告拦截
++ [AdGuard]()
 
 ## 文档/建站工具
 
